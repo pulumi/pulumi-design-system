@@ -1,0 +1,250 @@
+@use "sass:map";
+
+// Copyright 2024, Pulumi Corporation. All rights reserved.
+
+/** The way the base color palettes work is like so:
+ * Any 800 Primary color will meet/exceed WCAG AA 4.5:1 on BG 2 (200) and 3 (300).
+ * The 800 Primary will meet/exceed WCAG AAA 7.0:1 on white and BG 1 (100).
+ * This should hold across color palettes, but if it doesn't, we can adjust the colors as needed.
+ * Reference: https://www.w3.org/TR/WCAG22/#contrast-minimum
+ *
+ * Please also update in {@link cmd/console2/src/app/util/constants.ts } if changing
+*/
+$gray: (
+    50: #fafafa,
+    /* Background 1*/ 100: #efeff0,
+    /* Background 2*/ 200: #e0dfe2,
+    /* Background 3*/ 300: #cbcace,
+
+    400: #b3b1b9,
+    500: #9997a0,
+
+    /* Tertiary*/ 600: #817d8c,
+    /* Secondary*/ 700: #6a6675,
+    /* Primary*/ 800: #56535a,
+
+    900: #46434c,
+
+    /* Service Black*/ 1000: #2e2932,
+);
+$violet: (
+    50: #f5f5ff,
+    /* Background 1*/ 100: #ebebff,
+    /* Background 2*/ 200: #dedbff,
+    /* Background 3*/ 300: #c3bdff,
+
+    400: #a697fc,
+    500: #9077f3,
+
+    /* Tertiary*/ 600: #7952e5,
+    /* Secondary*/ 700: #5a30c5,
+    /* Primary*/ 800: #492e8e,
+
+    900: #392960,
+    1000: #231f33,
+);
+$aqua: (
+    50: #f5fffd,
+    /* Background 1*/ 100: #ccfff5,
+    /* Background 2*/ 200: #5cffde,
+    /* Background 3*/ 300: #1efad9,
+
+    400: #02d9c0,
+    500: #00a896,
+
+    /* Tertiary*/ 600: #008f83,
+    /* Secondary*/ 700: #00756c,
+    /* Primary*/ 800: #075f59,
+
+    900: #114642,
+    1000: #101e1d,
+);
+$green: (
+    50: #f6fdf9,
+    /* Background 1*/ 100: #dffce9,
+    /* Background 2*/ 200: #b6fbce,
+    /* Background 3*/ 300: #84f1ac,
+
+    400: #4ade80,
+    500: #21c45d,
+
+    /* Tertiary*/ 600: #16a249,
+    /* Secondary*/ 700: #1c7d41,
+    /* Primary, Success*/ 800: #165a31,
+
+    900: #1c3f2b,
+    1000: #202723,
+);
+$orange: (
+    50: #fffaf5,
+    /* Background 1*/ 100: #ffebd1,
+    /* Background 2*/ 200: #fedbb3,
+    /* Background 3*/ 300: #fdbe7c,
+
+    400: #fb9746,
+    500: #f96c0b,
+
+    /* Theme Primary, Warning, Text Tertiary*/ 600: #da510b,
+    /* Text Secondary*/ 700: #b23c0b,
+    /* Text Primary*/ 800: #923111,
+
+    900: #693420,
+    1000: #33231f,
+);
+$red: (
+    50: #fff5f6,
+    /* Background 1*/ 100: #ffe0e1,
+    /* Background 2*/ 200: #ffc7ca,
+    /* Background 3*/ 300: #ff9fa4,
+
+    400: #ff676e,
+    500: #fb2c36,
+
+    /* Tertiary*/ 600: #ee1721,
+    /* Secondary*/ 700: #bd141c,
+    /* Primary, Error, Destructive*/ 800: #96171e,
+
+    900: #611f22,
+    1000: #331f20,
+);
+$blue: (
+    50: #f5faff,
+    /* Background 1*/ 100: #e5f1ff,
+    /* Background 2*/ 200: #cce4ff,
+    /* Background 3*/ 300: #a3d0ff,
+
+    400: #75b5ff,
+    500: #5296ff,
+    /* Tertiary*/ 600: #3c79f6,
+    /* Secondary*/ 700: #1e57eb,
+    /* Primary*/ 800: #1e47c2,
+
+    900: #28448a,
+    1000: #283048,
+);
+$yellow: (
+    50: #fffbeb,
+    /* Background 1*/ 100: #fef2c7,
+    /* Background 2*/ 200: #fde38a,
+    /* Background 3*/ 300: #fdcf4c,
+
+    400: #fcba23,
+
+    /* Theme Primary*/ 500: #f49709,
+    /* Text Tertiary*/ 600: #da7205,
+    /* Text Secondary*/ 700: #b54f08,
+    /* Text Primary*/ 800: #933d0d,
+
+    900: #723213,
+    1000: #371d11,
+);
+$white: #fff;
+$black: #000;
+$colors: (
+    "gray": $gray,
+    "violet": $violet,
+    "aqua": $aqua,
+    "green": $green,
+    "orange": $orange,
+    "red": $red,
+    "blue": $blue,
+    "yellow": $yellow,
+);
+$single-colors: (
+    "white": $white,
+    "black": $black,
+);
+$color-shades: 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000;
+
+// Pulumi brand colors.
+$color-brand-violet: map.get($violet, 700);
+$color-brand-orange: map.get($orange, 600);
+$color-brand-blue: map.get($blue, 800);
+$color-brand-yellow: #fed05d;
+
+// States
+$color-info: map.get($blue, 800);
+$color-success: map.get($green, 800);
+$color-warning: map.get($yellow, 800);
+$color-failure: map.get($red, 800);
+$color-disabled: map.get($gray, 500);
+
+// Actions
+$color-add: $color-success;
+$color-remove: $color-failure;
+$color-update: $color-brand-yellow;
+$color-unchanged: map.get($gray, 200);
+
+// Identity providers
+$color-identity-github: #171515;
+$color-identity-gitlab: #e24329;
+$color-identity-atlassian: #2684ff;
+$color-identity-google: #4285f4;
+
+// Text
+$color-text-sub-heading: map.get($gray, 800);
+$color-text-detail: map.get($gray, 800);
+$color-text-heading: map.get($gray, 700);
+$color-text-body: map.get($gray, 1000);
+$color-unknown-other: map.get($gray, 400);
+
+// Context-specific
+$color-stack-favorites: #fb9746;
+
+// Code editor
+$editor-background: #1e1e1e;
+$editor-hover-background: #3d3d3d;
+
+// Side panels, dialogs, and other surface-level UI elements
+$color-dark-mode-surface-background: #383838;
+
+// Full page background color
+$color-dark-mode-page-background: #1e1e1e;
+
+// Code components and editors
+$color-dark-mode-code-background: #241f30;
+
+// Cards, expansion panels, and other main content blocks
+$color-dark-mode-card-background: #292929;
+
+// Gradient background used in dashboard cards and trial banner
+$color-gradient-background: linear-gradient(
+    90deg,
+    rgb(252 229 170 / 25%) 0%,
+    rgb(250 197 203 / 25%) 26.56%,
+    rgb(229 183 206 / 25%) 52.08%,
+    rgb(212 198 234 / 25%) 78.65%,
+    rgb(184 189 240 / 25%) 100%
+);
+
+// Button color palettes
+$primary-button: (
+    contents: $white,
+    rest-background: $color-brand-blue,
+    hover-active-background: map.get($blue, 800),
+    disabled-background: map.get($blue, 200),
+);
+$secondary-button: (
+    rest-background: $white,
+    rest-contents: $color-brand-blue,
+    rest-border: $color-brand-blue,
+    hover-active-background: $color-brand-blue,
+    hover-active-contents: $white,
+    hover-active-border: $color-brand-blue,
+    disabled-background: #e5e5e9,
+    disabled-contents: #bebfc9,
+    disabled-border: #bebfc9,
+);
+$tertiary-button: (
+    contents: $color-brand-blue,
+    rest-background: transparent,
+    hover-active-background: map.get($blue, 100),
+    disabled-background: transparent,
+    disabled-contents: #bebfc9,
+);
+$destructive-button: (
+    contents: $white,
+    rest-background: map.get($red, 800),
+    hover-active-background: map.get($red, 900),
+    disabled-background: map.get($red, 300),
+);

@@ -1,0 +1,415 @@
+@use "./design-tokens/index" as *;
+
+// Abstracts the typography specs to allow for easy reuse
+// Defaults to Body Medium
+@mixin typopgraphy(
+    $font-family: $font-family-primary,
+    $font-size: $font-size-body-medium,
+    $font-weight: $font-weight-normal,
+    $line-height: $line-height-body
+) {
+    // Ensures the font weight renders correctly in all browsers
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+
+    // We use stylistic alternates for the Inter font
+    font-feature-settings:
+        "liga" 1,
+        "calt" 1,
+        "cv11" 1;
+
+    // variable, depending on step used of the Pulumi Cloud font ramp
+    font-family: $font-family;
+    font-size: $font-size;
+    font-weight: $font-weight;
+
+    // We defer to the font's default letter spacing
+    letter-spacing: normal;
+
+    // constants accross the ramp
+    font-style: normal;
+    line-height: $line-height;
+    margin: unset;
+    padding: unset;
+}
+
+// Type Ramp mixins
+@mixin font-display-xxlarge {
+    @include typopgraphy(
+        $font-family: $font-family-primary,
+        $font-size: $font-size-display-xxlarge,
+        $font-weight: $font-weight-bold,
+        $line-height: $line-height-display
+    );
+}
+
+@mixin font-display-xlarge {
+    @include typopgraphy(
+        $font-family: $font-family-primary,
+        $font-size: $font-size-display-xlarge,
+        $font-weight: $font-weight-bold,
+        $line-height: $line-height-display
+    );
+}
+
+@mixin font-display-large {
+    @include typopgraphy(
+        $font-family: $font-family-primary,
+        $font-size: $font-size-display-large,
+        $font-weight: $font-weight-bold,
+        $line-height: $line-height-display
+    );
+}
+
+@mixin font-display-medium {
+    @include typopgraphy(
+        $font-family: $font-family-primary,
+        $font-size: $font-size-display-medium,
+        $font-weight: $font-weight-bold,
+        $line-height: $line-height-display
+    );
+}
+
+@mixin font-display-small {
+    @include typopgraphy(
+        $font-family: $font-family-primary,
+        $font-size: $font-size-display-small,
+        $font-weight: $font-weight-bold,
+        $line-height: $line-height-display
+    );
+}
+
+@mixin font-display-xsmall {
+    @include typopgraphy(
+        $font-family: $font-family-primary,
+        $font-size: $font-size-display-xsmall,
+        $font-weight: $font-weight-bold,
+        $line-height: $line-height-display
+    );
+}
+
+@mixin font-h1 {
+    @include typopgraphy(
+        $font-family: $font-family-primary,
+        $font-size: $font-size-h1,
+        $font-weight: $font-weight-bold,
+        $line-height: $line-height-display
+    );
+}
+
+@mixin font-h2 {
+    @include typopgraphy(
+        $font-family: $font-family-primary,
+        $font-size: $font-size-h2,
+        $font-weight: $font-weight-bold,
+        $line-height: $line-height-display
+    );
+}
+
+@mixin font-h3 {
+    @include typopgraphy(
+        $font-family: $font-family-primary,
+        $font-size: $font-size-h3-v2,
+        $font-weight: $font-weight-bold,
+        $line-height: $line-height-display
+    );
+}
+
+@mixin font-body-xlarge {
+    @include typopgraphy(
+        $font-family: $font-family-primary,
+        $font-size: $font-size-body-xlarge,
+        $font-weight: $font-weight-normal,
+        $line-height: $line-height-body
+    );
+}
+
+@mixin font-body-xlarge-semibold {
+    @include typopgraphy(
+        $font-family: $font-family-primary,
+        $font-size: $font-size-body-xlarge,
+        $font-weight: $font-weight-bold,
+        $line-height: $line-height-body
+    );
+}
+
+@mixin font-body-large {
+    @include typopgraphy(
+        $font-family: $font-family-primary,
+        $font-size: $font-size-body-large,
+        $font-weight: $font-weight-normal,
+        $line-height: $line-height-body
+    );
+}
+
+@mixin font-body-large-semibold {
+    @include typopgraphy(
+        $font-family: $font-family-primary,
+        $font-size: $font-size-body-large,
+        $font-weight: $font-weight-bold,
+        $line-height: $line-height-body
+    );
+}
+
+@mixin font-body-medium {
+    @include typopgraphy(
+        $font-family: $font-family-primary,
+        $font-size: $font-size-body-medium,
+        $font-weight: $font-weight-normal,
+        $line-height: $line-height-body
+    );
+}
+
+@mixin font-body-medium-semibold {
+    @include typopgraphy(
+        $font-family: $font-family-primary,
+        $font-size: $font-size-body-medium,
+        $font-weight: $font-weight-bold,
+        $line-height: $line-height-body
+    );
+}
+
+@mixin font-body-small {
+    @include typopgraphy(
+        $font-family: $font-family-primary,
+        $font-size: $font-size-body-small,
+        $font-weight: $font-weight-normal,
+        $line-height: $line-height-body
+    );
+}
+
+@mixin font-body-small-semibold {
+    @include typopgraphy(
+        $font-family: $font-family-primary,
+        $font-size: $font-size-body-small,
+        $font-weight: $font-weight-bold,
+        $line-height: $line-height-body
+    );
+}
+
+@mixin font-body-xsmall {
+    @include typopgraphy(
+        $font-family: $font-family-primary,
+        $font-size: $font-size-body-xsmall,
+        $font-weight: $font-weight-normal,
+        $line-height: $line-height-body
+    );
+}
+
+@mixin font-body-xsmall-semibold {
+    @include typopgraphy(
+        $font-family: $font-family-primary,
+        $font-size: $font-size-body-xsmall,
+        $font-weight: $font-weight-bold,
+        $line-height: $line-height-body
+    );
+}
+
+@mixin font-code-large {
+    @include typopgraphy(
+        $font-family: $font-family-code,
+        $font-size: $font-size-code-large,
+        $font-weight: $font-weight-normal,
+        $line-height: $line-height-body
+    );
+}
+
+@mixin font-code-medium {
+    @include typopgraphy(
+        $font-family: $font-family-code,
+        $font-size: $font-size-code-medium,
+        $font-weight: $font-weight-normal,
+        $line-height: $line-height-body
+    );
+}
+
+@mixin font-code-small {
+    @include typopgraphy(
+        $font-family: $font-family-code,
+        $font-size: $font-size-code-small,
+        $font-weight: $font-weight-normal,
+        $line-height: $line-height-body
+    );
+}
+
+$mobile-width: 414px;
+$tablet-width: 768px;
+$desktop-width: 1024px;
+$xl-desktop-width: 1275px;
+
+@mixin mobile {
+    @media (max-width: #{$mobile-width}) {
+        @content;
+    }
+}
+
+@mixin tablet-up {
+    @media (min-width: #{$tablet-width}) {
+        @content;
+    }
+}
+
+@mixin desktop-up {
+    @media (min-width: #{$desktop-width}) {
+        @content;
+    }
+}
+
+@mixin xl-desktop-up {
+    @media (min-width: #{$xl-desktop-width}) {
+        @content;
+    }
+}
+
+@mixin tab-styles {
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
+    @include font-body-medium;
+
+    color: theme(gray-700);
+    padding: $spacing-s $spacing-xl $spacing-l $spacing-xl;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:not(.selected):hover {
+        color: theme(gray-1000);
+    }
+
+    &.selected {
+        color: theme(violet-800);
+        border-bottom: 2px solid theme(violet-800);
+    }
+
+    &.disabled,
+    &:disabled {
+        color: theme(gray-1000);
+        opacity: 0.3;
+        cursor: not-allowed;
+    }
+}
+
+// Styles for ActionsMenuCellRenderer — a vanilla JS ag-grid cell renderer that
+// creates DOM elements outside Angular's view encapsulation. Include this mixin
+// in a global stylesheet when using ActionsMenuCellRenderer with raw ag-grid
+// (i.e. without pulumi-table, which provides these styles via its shadow DOM).
+@mixin ag-grid-actions-menu-cell-renderer {
+    .pds-actions-menu-cell-renderer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+
+        .pds-actions-menu-trigger {
+            all: unset;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: $spacing-s;
+            border-radius: $border-radius-s;
+            transition: background-color 0.2s;
+
+            &:hover {
+                background-color: theme(gray-100);
+            }
+
+            &:focus-visible {
+                outline: 2px solid theme(violet-800);
+                outline-offset: 2px;
+            }
+        }
+    }
+
+    .pds-actions-menu-popup {
+        position: fixed;
+        z-index: 900;
+    }
+}
+
+// Emits utility classes for `padding`, `margin`, and their per-side variants,
+// using the design-system spacing scale. Intended to be `@include`d inside a
+// component's top-level selector so the classes are scoped to that component
+// (e.g. `pulumi-box { @include spacing-utility-classes; }`).
+
+// When `$compound: true`, the classes are compounded onto the including selector
+// (e.g. `.host.padding-l` instead of `.host .padding-l`). Use this when the
+// utility classes are applied to the same element as the host selector, so they
+// have higher specificity than any resets on that element.
+
+// Generated classes:
+//   .padding-none, .padding-xs, .padding-s, .padding-m, .padding-l, .padding-xl,
+//   .padding-2x, .padding-3x, .padding-4x
+//   .padding-{top,right,bottom,left}-{xs,s,m,l,xl,2x,3x,4x}
+//   (and the same set for `margin`)
+@mixin spacing-utility-classes($compound: false) {
+    $spacing-sizes: (
+        "xs": $spacing-xs,
+        "s": $spacing-s,
+        "m": $spacing-m,
+        "l": $spacing-l,
+        "xl": $spacing-xl,
+        "2x": $spacing-2x,
+        "3x": $spacing-3x,
+        "4x": $spacing-4x,
+    );
+
+    @each $property in (padding, margin) {
+        @if $compound {
+            &.#{$property}-none {
+                #{$property}: 0;
+            }
+        } @else {
+            .#{$property}-none {
+                #{$property}: 0;
+            }
+        }
+
+        @each $name, $value in $spacing-sizes {
+            @if $compound {
+                &.#{$property}-#{$name} {
+                    #{$property}: $value;
+                }
+
+                &.#{$property}-top-#{$name} {
+                    #{$property}-top: $value;
+                }
+
+                &.#{$property}-right-#{$name} {
+                    #{$property}-right: $value;
+                }
+
+                &.#{$property}-bottom-#{$name} {
+                    #{$property}-bottom: $value;
+                }
+
+                &.#{$property}-left-#{$name} {
+                    #{$property}-left: $value;
+                }
+            } @else {
+                .#{$property}-#{$name} {
+                    #{$property}: $value;
+                }
+
+                .#{$property}-top-#{$name} {
+                    #{$property}-top: $value;
+                }
+
+                .#{$property}-right-#{$name} {
+                    #{$property}-right: $value;
+                }
+
+                .#{$property}-bottom-#{$name} {
+                    #{$property}-bottom: $value;
+                }
+
+                .#{$property}-left-#{$name} {
+                    #{$property}-left: $value;
+                }
+            }
+        }
+    }
+}

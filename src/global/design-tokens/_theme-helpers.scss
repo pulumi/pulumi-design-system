@@ -1,0 +1,274 @@
+@use "sass:map";
+@use "sass:string";
+@use "sass:list";
+@use "sass:meta";
+@use "./colors" as *;
+
+/// Theme function to simplify theme-aware CSS property setting
+/// You can write: color: theme(gray-800), theme('white'), theme('black'), etc
+/// @param {String} $color-token - The color token in format "family-shade" (e.g., "gray-800", "violet-700") or single color (e.g., "white", "black")
+/// @return {String} - CSS custom property with fallback to Sass map value
+///
+/// @example scss
+/// .my-element {
+///     color: theme(gray-800);
+///     background-color: theme(violet-100);
+///     border-color: theme(blue-700);
+///     box-shadow: 0 2px 4px theme('black');
+///     color: theme('white');
+/// }
+///
+/// @example scss variables
+/// In order to set a scss variable, we must use CSS custom properties.
+/// :root {
+///    --my-custom-color: theme(pink-600);
+/// }
+/// $card-style-border: var(--my-custom-color);
+/// .card {
+///    border: $card-style-border;
+/// }
+///
+@function theme($color-token) {
+    // Split the color token into family and shade
+    $dash-index: string.index($color-token, "-");
+
+    // Handle single color tokens (no dash)
+    @if not $dash-index {
+        @if not map.has-key($single-colors, $color-token) {
+            @error "Invalid color token '#{$color-token}'. Supported single colors: 'white', 'black'. For color families, use format 'family-shade' (e.g., 'gray-800')";
+        }
+
+        @return var(--color-#{$color-token}, #{map.get($single-colors, $color-token)});
+    }
+
+    $family: string.slice($color-token, 1, $dash-index - 1);
+    $shade-string: string.slice($color-token, $dash-index + 1);
+
+    // Convert shade string to number since color maps use numeric keys
+    $shade: number($shade-string);
+
+    // Use the $colors map to get the color family map
+    @if not map.has-key($colors, $family) {
+        @error "Unknown color family '#{$family}'. Available families: #{map.keys($colors)}";
+    }
+
+    $color-map: map.get($colors, $family);
+
+    // Validate that the shade exists in the color map
+    @if not map.has-key($color-map, $shade) {
+        @error "Unknown shade '#{$shade}' for color family '#{$family}'. Available shades: #{map.keys($color-map)}";
+    }
+
+    // Return the CSS custom property with Sass map fallback
+    @return var(--#{$color-token}, #{map.get($color-map, $shade)});
+}
+
+/// Converts a numeric string to a number
+/// Only handles positive integers, no floats or negatives
+/// @param {String} $string - The numeric string to convert (e.g., "123")
+/// @return {Number} - The converted number (e.g., 123)
+@function number($string) {
+    // Matrices
+    $strings: "0" "1" "2" "3" "4" "5" "6" "7" "8" "9";
+    $numbers: 0 1 2 3 4 5 6 7 8 9;
+
+    // Result
+    $result: 0;
+
+    // Looping through all characters
+    @for $i from 1 through string.length($string) {
+        $character: string.slice($string, $i, $i);
+        $index: list.index($strings, $character);
+
+        @if not $index {
+            @warn "Unknown character `#{$character}`.";
+            @return false;
+        }
+
+        $number: list.nth($numbers, $index);
+        $result: $result * 10 + $number;
+    }
+
+    @return $result;
+}
+
+/// Converts a hex character to a decimal number
+/// @param {String} $char - A single hex character (0-9, a-f, A-F)
+/// @return {Number} - The decimal value (0-15)
+@function hex-to-dec($char) {
+    $hex-chars: "0" "1" "2" "3" "4" "5" "6" "7" "8" "9" "a" "b" "c" "d" "e" "f";
+    $index: list.index($hex-chars, string.to-lower-case($char));
+
+    @if not $index {
+        @error "Invalid hex character '#{$char}'";
+    }
+
+    @return $index - 1;
+}
+
+/// Converts a hex color to RGB components
+/// @param {Color|String} $color - A hex color (e.g., #404041 or #fff)
+/// @return {List} - A list of three RGB values (e.g., 64, 64, 65)
+@function hex-to-rgb($color) {
+    // Convert to string and remove the # if present
+    $hex: "#{$color}";
+
+    @if string.slice($hex, 1, 1) == "#" {
+        $hex: string.slice($hex, 2);
+    }
+
+    $length: string.length($hex);
+
+    // Handle 3-character hex codes (e.g., #fff -> #ffffff)
+    @if $length == 3 {
+        $r-char: string.slice($hex, 1, 1);
+        $g-char: string.slice($hex, 2, 2);
+        $b-char: string.slice($hex, 3, 3);
+        $r: hex-to-dec($r-char) * 16 + hex-to-dec($r-char);
+        $g: hex-to-dec($g-char) * 16 + hex-to-dec($g-char);
+        $b: hex-to-dec($b-char) * 16 + hex-to-dec($b-char);
+
+        @return ($r, $g, $b);
+    }
+
+    // Handle 6-character hex codes (e.g., #404041)
+    @if $length == 6 {
+        $r: hex-to-dec(string.slice($hex, 1, 1)) * 16 + hex-to-dec(string.slice($hex, 2, 2));
+        $g: hex-to-dec(string.slice($hex, 3, 3)) * 16 + hex-to-dec(string.slice($hex, 4, 4));
+        $b: hex-to-dec(string.slice($hex, 5, 5)) * 16 + hex-to-dec(string.slice($hex, 6, 6));
+
+        @return ($r, $g, $b);
+    }
+
+    @error "Invalid hex color '#{$color}'. Expected 3 or 6 characters.";
+}
+
+/// Get a theme color in RGBA format with optional opacity
+/// @param {String} $color-token - The color token in format "family-shade" (e.g., "gray-800")
+/// @param {Number} $opacity - The opacity value (0-1), defaults to 1
+/// @return {String} - A CSS color-mix() expression that resolves at runtime, respecting theme changes
+///
+/// @example scss
+/// .my-element {
+///     background-color: theme-rgba(violet-600, 0.5);
+///     // Outputs: color-mix(in srgb, var(--violet-600, #9174c3) 50%, transparent)
+///
+///     background-color: theme-rgba("black", 0.5);
+///     // Outputs: color-mix(in srgb, var(--black, #000) 50%, transparent)
+///
+///     border-color: theme-rgba(gray-800);
+///     // Outputs: var(--gray-800, #404041) (no mixing needed at full opacity)
+/// }
+@function theme-rgba($color-token, $opacity: 1) {
+    // Get the theme-aware CSS custom property value (e.g., var(--gray-800, #404041))
+    $color-value: theme($color-token);
+
+    // At full opacity, just return the theme color directly
+    @if $opacity == 1 {
+        @return $color-value;
+    }
+
+    // Convert opacity (0-1) to percentage for color-mix
+    // color-mix resolves CSS custom properties at runtime, so dark mode works correctly
+    $percent: calc($opacity * 100%);
+
+    @return color-mix(in srgb, #{$color-value} #{$percent}, transparent);
+}
+
+/// Semantic color aliases for common use cases
+/// These provide more meaningful names for frequently used colors
+@function theme-text-primary() {
+    @return theme(gray-1000);
+}
+
+@function theme-text-secondary() {
+    @return theme(gray-700);
+}
+
+@function theme-text-tertiary() {
+    @return theme(gray-600);
+}
+
+@function theme-background-primary() {
+    @return theme(gray-100);
+}
+
+@function theme-background-secondary() {
+    @return theme(gray-200);
+}
+
+@function theme-background-tertiary() {
+    @return theme(gray-300);
+}
+
+@function theme-border-primary() {
+    @return theme(gray-300);
+}
+
+@function theme-border-secondary() {
+    @return theme(gray-200);
+}
+
+@function theme-brand-primary() {
+    @return theme(violet-800);
+}
+
+@function theme-brand-secondary() {
+    @return theme(violet-700);
+}
+
+/// Create a light/dark color mapping for decision tokens
+/// Returns a map with light and dark keys for use in $decision-tokens
+/// @param {Color|String} $light-color - Color for light mode (any valid color value)
+/// @param {Color|String} $dark-color - Color for dark mode (any valid color value)
+/// @return {Map} - Map with light and dark keys
+///
+/// @example scss
+/// $decision-tokens: (
+///     my-color: theme-swap(#ffffff, #000000),
+///     another-color: theme-swap(map.get($violet, 100), $color-dark-mode-code-background),
+/// );
+@function theme-swap($light-color, $dark-color) {
+    @return (light: $light-color, dark: $dark-color);
+}
+
+/// Helper function to create theme-aware rgba color tokens
+/// Can accept either one color (for both themes) or two colors (light and dark)
+/// @param {Color} $light-color - The color value for light mode (or for both modes if $dark-color is not provided)
+/// @param {Number|Color} $opacity-or-dark-color - If a number, opacity for both themes. If a color, the dark mode color.
+/// @param {Number} $opacity - Optional opacity value (0-1) when two colors are provided
+/// @return {Map} - Map with light and dark rgba values
+///
+/// @example scss
+/// // Single color with opacity (same for both themes)
+/// my-token: theme-swap-rgba(#404041, 0.4);
+///
+/// // Two colors with same opacity
+/// my-token: theme-swap-rgba(#404041, #ffffff, 0.4);
+///
+/// // Two colors with different opacities
+/// my-token: theme-swap-rgba(#404041, #ffffff, 0.4, 0.6);
+@function theme-swap-rgba($light-color, $opacity-or-dark-color, $opacity: null) {
+    // Check if second argument is a color (dark color) or a number (opacity)
+    $is-dark-color-provided: meta.type-of($opacity-or-dark-color) == color;
+
+    @if $is-dark-color-provided {
+        // Two colors provided
+        $dark-color: $opacity-or-dark-color;
+        $light-opacity: if($opacity != null, $opacity, 1);
+        $dark-opacity: if($opacity != null, $opacity, 1);
+        $light-rgb: hex-to-rgb($light-color);
+        $dark-rgb: hex-to-rgb($dark-color);
+        $light-rgba: rgba(list.nth($light-rgb, 1), list.nth($light-rgb, 2), list.nth($light-rgb, 3), $light-opacity);
+        $dark-rgba: rgba(list.nth($dark-rgb, 1), list.nth($dark-rgb, 2), list.nth($dark-rgb, 3), $dark-opacity);
+
+        @return (light: $light-rgba, dark: $dark-rgba);
+    } @else {
+        // Single color with opacity (original behavior)
+        $opacity-value: $opacity-or-dark-color;
+        $rgb-values: hex-to-rgb($light-color);
+        $rgba-value: rgba(list.nth($rgb-values, 1), list.nth($rgb-values, 2), list.nth($rgb-values, 3), $opacity-value);
+
+        @return (light: $rgba-value, dark: $rgba-value);
+    }
+}

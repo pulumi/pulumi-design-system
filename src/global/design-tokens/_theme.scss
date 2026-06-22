@@ -1,0 +1,170 @@
+// Copyright 2024, Pulumi Corporation. All rights reserved.
+
+/** Theme System for Pulumi Design System
+ * This file provides CSS custom properties for both light and dark themes,
+ * allowing for easy theme switching via CSS classes or data attributes.
+ */
+
+// Import both light and dark color schemes
+@use "./colors" as *;
+@use "./colors-dark" as *;
+@use "./decision-tokens" as *;
+@use "sass:map";
+
+// Define theme variables that can be overridden
+:root {
+    // Light theme (default)
+    --theme-mode: light;
+
+    // Base colors
+    --color-white: #{$white};
+    --color-black: #{$black};
+
+    // Brand colors
+    --color-brand-violet: #{$color-brand-violet};
+    --color-brand-orange: #{$color-brand-orange};
+    --color-brand-blue: #{$color-brand-blue};
+    --color-brand-yellow: #{$color-brand-yellow};
+
+    // States
+    --color-success: #{$color-success};
+    --color-failure: #{$color-failure};
+    --color-disabled: #{$color-disabled};
+
+    // Actions
+    --color-add: #{$color-add};
+    --color-remove: #{$color-remove};
+    --color-update: #{$color-update};
+    --color-unchanged: #{$color-unchanged};
+
+    // Identity providers
+    --color-identity-github: #{$color-identity-github};
+    --color-identity-gitlab: #{$color-identity-gitlab};
+    --color-identity-atlassian: #{$color-identity-atlassian};
+    --color-identity-google: #{$color-identity-google};
+
+    // Text colors
+    --color-text-sub-heading: #{$color-text-sub-heading};
+    --color-text-detail: #{$color-text-detail};
+    --color-text-heading: #{$color-text-heading};
+    --color-text-body: #{$color-text-body};
+    --color-unknown-other: #{$color-unknown-other};
+
+    // Context-specific
+    --color-stack-favorites: #{$color-stack-favorites};
+
+    // Code editor
+    --editor-background: #{$editor-background};
+    --editor-hover-background: #{$editor-hover-background};
+
+    // Gradient background
+    --color-gradient-background: #{$color-gradient-background};
+
+    // Button colors
+    --primary-button-contents: #{map.get($primary-button, contents)};
+    --primary-button-rest-background: #{map.get($primary-button, rest-background)};
+    --primary-button-hover-active-background: #{map.get($primary-button, hover-active-background)};
+    --primary-button-disabled-background: #{map.get($primary-button, disabled-background)};
+    --secondary-button-rest-background: #{map.get($secondary-button, rest-background)};
+    --secondary-button-rest-contents: #{map.get($secondary-button, rest-contents)};
+    --secondary-button-rest-border: #{map.get($secondary-button, rest-border)};
+    --secondary-button-hover-active-background: #{map.get($secondary-button, hover-active-background)};
+    --secondary-button-hover-active-contents: #{map.get($secondary-button, hover-active-contents)};
+    --secondary-button-hover-active-border: #{map.get($secondary-button, hover-active-border)};
+    --secondary-button-disabled-background: #{map.get($secondary-button, disabled-background)};
+    --secondary-button-disabled-contents: #{map.get($secondary-button, disabled-contents)};
+    --secondary-button-disabled-border: #{map.get($secondary-button, disabled-border)};
+    --tertiary-button-contents: #{map.get($tertiary-button, contents)};
+    --tertiary-button-rest-background: #{map.get($tertiary-button, rest-background)};
+    --tertiary-button-hover-active-background: #{map.get($tertiary-button, hover-active-background)};
+    --tertiary-button-disabled-background: #{map.get($tertiary-button, disabled-background)};
+    --tertiary-button-disabled-contents: #{map.get($tertiary-button, disabled-contents)};
+    --destructive-button-contents: #{map.get($destructive-button, contents)};
+    --destructive-button-rest-background: #{map.get($destructive-button, rest-background)};
+    --destructive-button-hover-active-background: #{map.get($destructive-button, hover-active-background)};
+    --destructive-button-disabled-background: #{map.get($destructive-button, disabled-background)};
+
+    // Decision tokens (light mode values)
+    @each $name, $values in $decision-tokens {
+        --#{$name}: #{map.get($values, light)};
+    }
+}
+
+// Dark theme
+[data-theme="dark"],
+.theme-dark {
+    --theme-mode: dark;
+
+    // Base colors
+    --color-white: #{$white-dark};
+    --color-black: #{$black-dark};
+
+    // Brand colors
+    --color-brand-violet: #{$color-brand-violet-dark};
+    --color-brand-orange: #{$color-brand-orange-dark};
+    --color-brand-blue: #{$color-brand-blue-dark};
+    --color-brand-yellow: #{$color-brand-yellow-dark};
+
+    // States
+    --color-success: #{$color-success-dark};
+    --color-failure: #{$color-failure-dark};
+    --color-disabled: #{$color-disabled-dark};
+
+    // Actions
+    --color-add: #{$color-add-dark};
+    --color-remove: #{$color-remove-dark};
+    --color-update: #{$color-update-dark};
+    --color-unchanged: #{$color-unchanged-dark};
+
+    // Identity providers
+    --color-identity-github: #{$color-identity-github-dark};
+    --color-identity-gitlab: #{$color-identity-gitlab-dark};
+    --color-identity-atlassian: #{$color-identity-atlassian-dark};
+    --color-identity-google: #{$color-identity-google-dark};
+
+    // Text colors
+    --color-text-sub-heading: #{$color-text-sub-heading-dark};
+    --color-text-detail: #{$color-text-detail-dark};
+    --color-text-heading: #{$color-text-heading-dark};
+    --color-text-body: #{$color-text-body-dark};
+    --color-unknown-other: #{$color-unknown-other-dark};
+
+    // Context-specific
+    --color-stack-favorites: #{$color-stack-favorites-dark};
+
+    // Code editor
+    --editor-background: #{$editor-background-dark};
+    --editor-hover-background: #{$editor-hover-background-dark};
+
+    // Gradient background
+    --color-gradient-background: #{$color-gradient-background-dark};
+
+    // Button colors
+    --primary-button-contents: #{map.get($primary-button-dark, contents)};
+    --primary-button-rest-background: #{map.get($primary-button-dark, rest-background)};
+    --primary-button-hover-active-background: #{map.get($primary-button-dark, hover-active-background)};
+    --primary-button-disabled-background: #{map.get($primary-button-dark, disabled-background)};
+    --secondary-button-rest-background: #{map.get($secondary-button-dark, rest-background)};
+    --secondary-button-rest-contents: #{map.get($secondary-button-dark, rest-contents)};
+    --secondary-button-rest-border: #{map.get($secondary-button-dark, rest-border)};
+    --secondary-button-hover-active-background: #{map.get($secondary-button-dark, hover-active-background)};
+    --secondary-button-hover-active-contents: #{map.get($secondary-button-dark, hover-active-contents)};
+    --secondary-button-hover-active-border: #{map.get($secondary-button-dark, hover-active-border)};
+    --secondary-button-disabled-background: #{map.get($secondary-button-dark, disabled-background)};
+    --secondary-button-disabled-contents: #{map.get($secondary-button-dark, disabled-contents)};
+    --secondary-button-disabled-border: #{map.get($secondary-button-dark, disabled-border)};
+    --tertiary-button-contents: #{map.get($tertiary-button-dark, contents)};
+    --tertiary-button-rest-background: #{map.get($tertiary-button-dark, rest-background)};
+    --tertiary-button-hover-active-background: #{map.get($tertiary-button-dark, hover-active-background)};
+    --tertiary-button-disabled-background: #{map.get($tertiary-button-dark, disabled-background)};
+    --tertiary-button-disabled-contents: #{map.get($tertiary-button-dark, disabled-contents)};
+    --destructive-button-contents: #{map.get($destructive-button-dark, contents)};
+    --destructive-button-rest-background: #{map.get($destructive-button-dark, rest-background)};
+    --destructive-button-hover-active-background: #{map.get($destructive-button-dark, hover-active-background)};
+    --destructive-button-disabled-background: #{map.get($destructive-button-dark, disabled-background)};
+
+    // Decision tokens (dark mode values)
+    @each $name, $values in $decision-tokens {
+        --#{$name}: #{map.get($values, dark)};
+    }
+}
