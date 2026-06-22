@@ -18,7 +18,6 @@ Home for all things Pulumi Design System. This repo currently publishes **design
 | **Helpers** | `_theme-helpers.scss` | `theme()`, `theme-rgba()`, and `theme-swap()` Sass functions |
 | **Mixins** | `_mixins.scss` | Typography mixins (`font-display-large`, `font-body-medium`, etc.) |
 | **Fonts** | `fonts.css` | `@font-face` declarations for Inter, Monaspace Neon, and Material Icons |
-| **TypeScript** | `spacing.ts` | `SpacingSize` type and spacing shorthand helpers |
 
 ### Token architecture
 
@@ -58,15 +57,6 @@ CSS custom properties are emitted when the token barrel is imported. Toggle dark
 
 ```html
 <html data-theme="dark">
-```
-
-### TypeScript spacing
-
-```typescript
-import { SpacingSize, spacing } from "@pulumi/design-tokens/spacing";
-
-const sides = spacing.parseShorthand("m s");
-// { top: "m", right: "s", bottom: "m", left: "s" }
 ```
 
 ### Fonts

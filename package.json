@@ -1,14 +1,13 @@
 {
   "name": "@pulumi/design-tokens",
   "version": "0.1.0",
-  "description": "Pulumi Design System tokens — SCSS, CSS custom properties, and TypeScript helpers",
+  "description": "Pulumi Design System tokens — SCSS and CSS custom properties",
   "license": "Apache-2.0",
   "files": ["src/"],
   "exports": {
     "./scss": "./src/global/design-tokens/_index.scss",
     "./scss/mixins": "./src/global/_mixins.scss",
-    "./fonts.css": "./src/global/fonts.css",
-    "./spacing": "./src/ts/spacing.ts"
+    "./fonts.css": "./src/global/fonts.css"
   },
   "peerDependencies": {
     "sass": ">=1.70.0"
