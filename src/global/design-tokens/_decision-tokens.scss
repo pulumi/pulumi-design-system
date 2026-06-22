@@ -1,0 +1,297 @@
+// Copyright 2024-2026, Pulumi Corporation. All rights reserved.
+
+/** Decision Tokens
+ * Custom color swaps for cases where the standard theme() function's
+ * light/dark mapping doesn't meet specific component needs.
+ * 
+ * Define decision tokens using the theme-swap() helper:
+ *   my-color: theme-swap(lightColor, darkColor)
+ * 
+ * Input types supported for both light and dark colors:
+ *   - Hex colors: #ffffff, #241f30
+ *   - SCSS variables: $white, $color-dark-mode-code-background
+ *   - map.get(): map.get($violet, 100)
+ * 
+ * The CSS custom properties are generated in _theme.scss, then exported
+ * as SCSS variables below for easy use in components.
+ * 
+ * Usage in components:
+ *   @use "design-tokens" as *;
+ *   .my-component {
+ *       background: $code-background-color;
+ *   }
+ */
+
+@use "./theme-helpers" as *;
+@use "./colors" as *;
+@use "./colors-dark" as *;
+@use "sass:map";
+
+// Decision token map - defines light/dark color pairs
+// These are used to generate CSS custom properties in _theme.scss
+$decision-tokens: (
+    /* Code and editor backgrounds*/ code-background-color:
+        theme-swap(map.get($violet, 100), $color-dark-mode-code-background),
+    code-border-color: theme-swap(map.get($gray, 200), $color-dark-mode-code-background),
+    code-label-color: theme-swap(map.get($gray, 600), $code-dark-label-color),
+    code-text-color: theme-swap(map.get($gray, 800), $code-dark-text-color),
+    /* Surface backgrounds (panels, dialogs, modals)*/ surface-background-color:
+        theme-swap($white, $color-dark-mode-surface-background),
+    /* Card backgrounds (expansion panels, cards)*/ card-background-color:
+        theme-swap($white, $color-dark-mode-card-background),
+    pulumi-card-gray-background-color: theme-swap(map.get($violet, 50), map.get($violet, 1000)),
+    pulumi-card-green-background-color: theme-swap(map.get($green, 50), map.get($aqua, 1000)),
+    pulumi-card-green-border-color: theme-swap(map.get($green, 200), map.get($aqua, 200)),
+    /* Page backgrounds*/ page-background-color: theme-swap(transparent, $color-dark-mode-page-background),
+    /* Button colors - General*/ button-focus-shadow: theme-swap(map.get($violet, 300), map.get($violet, 1000)),
+    /* Primary buttons*/ button-primary-text: theme-swap($white, $white),
+    button-primary-default-background: theme-swap(map.get($violet, 800), map.get($violet, 800)),
+    button-primary-hover-background: theme-swap(map.get($violet, 700), map.get($violet, 700)),
+    button-primary-active-background: theme-swap(map.get($violet, 900), map.get($violet, 900)),
+    button-primary-disabled-background: theme-swap-rgba(map.get($violet, 800), 0.4),
+    button-primary-success-disabled-background: theme-swap-rgba(map.get($green, 800), 0.4),
+    button-primary-warning-disabled-background: theme-swap-rgba(map.get($orange, 500), 0.4),
+    button-primary-destructive-disabled-background: theme-swap-rgba(map.get($red, 800), 0.4),
+    /* Secondary buttons*/ button-secondary-default-text: theme-swap(map.get($violet, 800), $white),
+    button-secondary-active-text: theme-swap(map.get($violet, 900), $white),
+    button-secondary-default-border: theme-swap(map.get($violet, 800), $white),
+    button-secondary-active-border: theme-swap(map.get($violet, 900), $white),
+    button-secondary-hover-background: theme-swap(map.get($violet, 100), map.get($violet, 700)),
+    button-secondary-active-background: theme-swap(map.get($violet, 100), map.get($violet, 900)),
+    button-secondary-disabled-text: theme-swap-rgba(map.get($violet, 800), $white, 0.4),
+    button-secondary-disabled-border: theme-swap-rgba(map.get($violet, 800), $white, 0.4),
+    button-secondary-disabled-background: theme-swap($white, transparent),
+    /* Secondary buttons - Success variant*/ button-secondary-success-default-text:
+        theme-swap(map.get($green, 800), map.get($green, 500)),
+    button-secondary-success-default-border: theme-swap(map.get($green, 800), map.get($green, 500)),
+    button-secondary-success-active-border: theme-swap(map.get($green, 900), map.get($green, 500)),
+    button-secondary-success-hover-text: theme-swap(map.get($green, 800), $white),
+    button-secondary-success-hover-background: theme-swap(map.get($green, 100), map.get($green, 600)),
+    button-secondary-success-active-text: theme-swap(map.get($green, 900), $white),
+    button-secondary-success-active-background: theme-swap(map.get($green, 100), map.get($green, 900)),
+    button-secondary-success-disabled-text: theme-swap-rgba(map.get($green, 800), 0.4),
+    button-secondary-success-disabled-border: theme-swap-rgba(map.get($green, 800), 0.4),
+    /* Secondary buttons - Warning variant*/ button-secondary-warning-default-text:
+        theme-swap(map.get($orange, 800), map.get($orange, 500)),
+    button-secondary-warning-default-border: theme-swap(map.get($orange, 500), map.get($orange, 500)),
+    button-secondary-warning-hover-text: theme-swap(map.get($orange, 800), map.get($orange, 1000)),
+    button-secondary-warning-hover-background: theme-swap(map.get($orange, 100), map.get($orange, 400)),
+    button-secondary-warning-active-text: theme-swap(map.get($orange, 900), map.get($orange, 1000)),
+    button-secondary-warning-active-background: theme-swap(map.get($orange, 100), map.get($orange, 600)),
+    button-secondary-warning-disabled-text: theme-swap-rgba(map.get($orange, 800), 0.4),
+    button-secondary-warning-disabled-border: theme-swap-rgba(map.get($orange, 500), 0.4),
+    /* Secondary buttons - Error variant*/ button-secondary-error-default-text:
+        theme-swap(map.get($red, 800), map.get($red, 500)),
+    button-secondary-error-default-border: theme-swap(map.get($red, 800), map.get($red, 500)),
+    button-secondary-error-active-border: theme-swap(map.get($red, 900), map.get($red, 500)),
+    button-secondary-error-hover-text: theme-swap(map.get($red, 800), $white),
+    button-secondary-error-hover-background: theme-swap(map.get($red, 100), map.get($red, 700)),
+    button-secondary-error-active-text: theme-swap(map.get($red, 900), $white),
+    button-secondary-error-active-background: theme-swap(map.get($red, 100), map.get($red, 900)),
+    button-secondary-error-disabled-text: theme-swap-rgba(map.get($red, 800), 0.4),
+    button-secondary-error-disabled-border: theme-swap-rgba(map.get($red, 800), 0.4),
+    /* Tertiary buttons - General*/ button-tertiary-active-background:
+        theme-swap(map.get($gray, 200), map.get($gray, 1000)),
+    button-tertiary-text-color: theme-swap(map.get($gray, 800), $white),
+    /* Tertiary buttons - Success variant*/ button-tertiary-success-default-text:
+        theme-swap(map.get($green, 800), map.get($green, 500)),
+    button-tertiary-success-default-border: theme-swap(map.get($green, 800), map.get($green, 500)),
+    button-tertiary-success-hover-text: theme-swap(map.get($green, 800), $white),
+    button-tertiary-success-hover-background: theme-swap(map.get($green, 100), map.get($green, 600)),
+    button-tertiary-success-active-text: theme-swap(map.get($green, 900), $white),
+    button-tertiary-success-active-background: theme-swap(map.get($green, 100), map.get($green, 900)),
+    /* Tertiary buttons - Warning variant*/ button-tertiary-warning-default-text:
+        theme-swap(map.get($orange, 800), map.get($orange, 500)),
+    button-tertiary-warning-hover-text: theme-swap(map.get($orange, 800), map.get($orange, 1000)),
+    button-tertiary-warning-hover-background: theme-swap(map.get($orange, 100), map.get($orange, 400)),
+    button-tertiary-warning-active-text: theme-swap(map.get($orange, 900), map.get($orange, 1000)),
+    button-tertiary-warning-active-background: theme-swap(map.get($orange, 100), map.get($orange, 600)),
+    /* Tertiary buttons - Error variant*/ button-tertiary-error-default-text:
+        theme-swap(map.get($red, 800), map.get($red, 500)),
+    button-tertiary-error-default-border: theme-swap(map.get($red, 800), map.get($red, 500)),
+    button-tertiary-error-hover-text: theme-swap(map.get($red, 800), $white),
+    button-tertiary-error-hover-background: theme-swap(map.get($red, 100), map.get($red, 700)),
+    button-tertiary-error-active-text: theme-swap(map.get($red, 900), $white),
+    button-tertiary-error-active-background: theme-swap(map.get($red, 100), map.get($red, 900)),
+    /* AG Grid*/ ag-grid-row-hover-color: theme-swap(map.get($violet, 100), map.get($violet, 600)),
+    ag-grid-body-background-color: theme-swap($white, $color-dark-mode-page-background),
+    /* Deployment logs*/ deployment-step-header-contents: theme-swap($white, $white),
+    deployment-logs-background-color: theme-swap(#1e1e1e, #292929),
+    deployment-title-queued-color: theme-swap(map.get($yellow, 600), map.get($yellow, 600)),
+    deployment-title-paused-color: theme-swap(map.get($red, 600), map.get($red, 600)),
+    deployment-title-running-color: theme-swap(map.get($violet, 700), map.get($violet, 700)),
+    deployment-title-succeeded-color: theme-swap(map.get($green, 800), map.get($green, 800)),
+    deployment-title-failed-color: theme-swap(map.get($red, 800), map.get($red, 800)),
+    deployment-title-skipped-color: theme-swap(map.get($gray, 600), map.get($gray, 600)),
+    /* AI suggestions*/ suggestion-background-color: theme-swap(map.get($violet, 100), map.get($violet, 900)),
+    /* Static white disc behind a brand logo that carries [data-invert]; stays
+       white in both themes so the global invert filter flips it to black in
+       dark mode rather than starting from the theme-aware (dark) white*/
+        suggestion-logo-disc-color: theme-swap($white, $white),
+    error-page-text-color: theme-swap($white, $white),
+    /* Error page backgrounds stay dark regardless of theme*/ error-page-background-color: theme-swap($black, $black),
+    unified-resource-details-table-background-color: theme-swap($white, transparent),
+    panel-overlay-color: theme-swap-rgba($black, 0.5),
+    /* ANSI colors for log blocks*/ ansi-0-color: theme-swap($black, $ansi-dark-0),
+    ansi-1-color: theme-swap(map.get($red, 800), $ansi-dark-1),
+    ansi-2-color: theme-swap(map.get($green, 800), $ansi-dark-2),
+    ansi-3-color: theme-swap(map.get($yellow, 800), $ansi-dark-3),
+    ansi-4-color: theme-swap(map.get($blue, 800), $ansi-dark-4),
+    ansi-5-color: theme-swap(map.get($violet, 800), $ansi-dark-5),
+    ansi-6-color: theme-swap(map.get($blue, 700), $ansi-dark-6),
+    ansi-7-color: theme-swap(map.get($gray, 900), $ansi-dark-7),
+    ansi-8-color: theme-swap(map.get($gray, 900), $ansi-dark-8),
+    ansi-9-color: theme-swap(map.get($red, 700), $ansi-dark-9),
+    ansi-10-color: theme-swap(map.get($green, 700), $ansi-dark-10),
+    ansi-11-color: theme-swap(map.get($yellow, 700), $ansi-dark-11),
+    ansi-12-color: theme-swap(map.get($blue, 700), $ansi-dark-12),
+    ansi-13-color: theme-swap(map.get($violet, 600), $ansi-dark-13),
+    ansi-14-color: theme-swap(map.get($blue, 600), $ansi-dark-14),
+    ansi-15-color: theme-swap(map.get($gray, 800), $ansi-dark-15)
+);
+$success-color: theme(green-600);
+$warning-color: theme(orange-600);
+$pending-color: theme(yellow-600);
+$error-color: theme(red-600);
+$info-color: theme(blue-600);
+$primary-color: theme(violet-600);
+$default-color: theme(gray-600);
+
+// Export as SCSS variables for use in components
+// These reference the CSS custom properties generated from the map above
+$code-background-color: var(--code-background-color);
+$code-border-color: var(--code-border-color);
+$code-label-color: var(--code-label-color);
+$code-text-color: var(--code-text-color);
+$surface-background-color: var(--surface-background-color);
+$card-background-color: var(--card-background-color);
+$pulumi-card-gray-background-color: var(--pulumi-card-gray-background-color);
+$pulumi-card-green-background-color: var(--pulumi-card-green-background-color);
+$pulumi-card-green-border-color: var(--pulumi-card-green-border-color);
+$page-background-color: var(--page-background-color);
+
+// Button colors - General
+$button-focus-shadow: var(--button-focus-shadow);
+
+// Primary buttons
+$button-primary-text: var(--button-primary-text);
+$button-primary-default-background: var(--button-primary-default-background);
+$button-primary-hover-background: var(--button-primary-hover-background);
+$button-primary-active-background: var(--button-primary-active-background);
+$button-primary-disabled-background: var(--button-primary-disabled-background);
+$button-primary-success-disabled-background: var(--button-primary-success-disabled-background);
+$button-primary-warning-disabled-background: var(--button-primary-warning-disabled-background);
+$button-primary-destructive-disabled-background: var(--button-primary-destructive-disabled-background);
+
+// Secondary buttons - Primary variant
+$button-secondary-default-text: var(--button-secondary-default-text);
+$button-secondary-active-text: var(--button-secondary-active-text);
+$button-secondary-default-border: var(--button-secondary-default-border);
+$button-secondary-active-border: var(--button-secondary-active-border);
+$button-secondary-hover-background: var(--button-secondary-hover-background);
+$button-secondary-active-background: var(--button-secondary-active-background);
+$button-secondary-disabled-text: var(--button-secondary-disabled-text);
+$button-secondary-disabled-border: var(--button-secondary-disabled-border);
+$button-secondary-disabled-background: var(--button-secondary-disabled-background);
+
+// Secondary buttons - Success variant
+$button-secondary-success-default-text: var(--button-secondary-success-default-text);
+$button-secondary-success-default-border: var(--button-secondary-success-default-border);
+$button-secondary-success-active-border: var(--button-secondary-success-active-border);
+$button-secondary-success-hover-text: var(--button-secondary-success-hover-text);
+$button-secondary-success-hover-background: var(--button-secondary-success-hover-background);
+$button-secondary-success-active-text: var(--button-secondary-success-active-text);
+$button-secondary-success-active-background: var(--button-secondary-success-active-background);
+$button-secondary-success-disabled-text: var(--button-secondary-success-disabled-text);
+$button-secondary-success-disabled-border: var(--button-secondary-success-disabled-border);
+
+// Secondary buttons - Warning variant
+$button-secondary-warning-default-text: var(--button-secondary-warning-default-text);
+$button-secondary-warning-default-border: var(--button-secondary-warning-default-border);
+$button-secondary-warning-hover-text: var(--button-secondary-warning-hover-text);
+$button-secondary-warning-hover-background: var(--button-secondary-warning-hover-background);
+$button-secondary-warning-active-text: var(--button-secondary-warning-active-text);
+$button-secondary-warning-active-background: var(--button-secondary-warning-active-background);
+$button-secondary-warning-disabled-text: var(--button-secondary-warning-disabled-text);
+$button-secondary-warning-disabled-border: var(--button-secondary-warning-disabled-border);
+
+// Secondary buttons - Error variant
+$button-secondary-error-default-text: var(--button-secondary-error-default-text);
+$button-secondary-error-default-border: var(--button-secondary-error-default-border);
+$button-secondary-error-active-border: var(--button-secondary-error-active-border);
+$button-secondary-error-hover-text: var(--button-secondary-error-hover-text);
+$button-secondary-error-hover-background: var(--button-secondary-error-hover-background);
+$button-secondary-error-active-text: var(--button-secondary-error-active-text);
+$button-secondary-error-active-background: var(--button-secondary-error-active-background);
+$button-secondary-error-disabled-text: var(--button-secondary-error-disabled-text);
+$button-secondary-error-disabled-border: var(--button-secondary-error-disabled-border);
+
+// Tertiary buttons - General
+$button-tertiary-active-background: var(--button-tertiary-active-background);
+$button-tertiary-text-color: var(--button-tertiary-text-color);
+
+// Tertiary buttons - Success variant
+$button-tertiary-success-default-text: var(--button-tertiary-success-default-text);
+$button-tertiary-success-default-border: var(--button-tertiary-success-default-border);
+$button-tertiary-success-hover-text: var(--button-tertiary-success-hover-text);
+$button-tertiary-success-hover-background: var(--button-tertiary-success-hover-background);
+$button-tertiary-success-active-text: var(--button-tertiary-success-active-text);
+$button-tertiary-success-active-background: var(--button-tertiary-success-active-background);
+
+// Tertiary buttons - Warning variant
+$button-tertiary-warning-default-text: var(--button-tertiary-warning-default-text);
+$button-tertiary-warning-hover-text: var(--button-tertiary-warning-hover-text);
+$button-tertiary-warning-hover-background: var(--button-tertiary-warning-hover-background);
+$button-tertiary-warning-active-text: var(--button-tertiary-warning-active-text);
+$button-tertiary-warning-active-background: var(--button-tertiary-warning-active-background);
+
+// Tertiary buttons - Error variant
+$button-tertiary-error-default-text: var(--button-tertiary-error-default-text);
+$button-tertiary-error-default-border: var(--button-tertiary-error-default-border);
+$button-tertiary-error-hover-text: var(--button-tertiary-error-hover-text);
+$button-tertiary-error-hover-background: var(--button-tertiary-error-hover-background);
+$button-tertiary-error-active-text: var(--button-tertiary-error-active-text);
+$button-tertiary-error-active-background: var(--button-tertiary-error-active-background);
+
+// AG Grid
+$ag-grid-row-hover-color: var(--ag-grid-row-hover-color);
+$ag-grid-body-background-color: var(--ag-grid-body-background-color);
+
+// Deployment logs
+$deployment-step-header-contents: var(--deployment-step-header-contents);
+$deployment-logs-background-color: var(--deployment-logs-background-color);
+$deployment-title-queued-color: var(--deployment-title-queued-color);
+$deployment-title-paused-color: var(--deployment-title-paused-color);
+$deployment-title-running-color: var(--deployment-title-running-color);
+$deployment-title-succeeded-color: var(--deployment-title-succeeded-color);
+$deployment-title-failed-color: var(--deployment-title-failed-color);
+$deployment-title-skipped-color: var(--deployment-title-skipped-color);
+$interactive-import-editor-background-color: var(--interactive-import-editor-background-color);
+
+// AI suggestions
+$suggestion-background-color: var(--suggestion-background-color);
+$suggestion-logo-disc-color: var(--suggestion-logo-disc-color);
+$error-page-text-color: var(--error-page-text-color);
+$error-page-background-color: var(--error-page-background-color);
+
+// Unified resource details table
+$unified-resource-details-table-background-color: var(--unified-resource-details-table-background-color);
+$panel-overlay-color: var(--panel-overlay-color);
+
+// ANSI colors for log blocks
+$ansi-0-color: var(--ansi-0-color);
+$ansi-1-color: var(--ansi-1-color);
+$ansi-2-color: var(--ansi-2-color);
+$ansi-3-color: var(--ansi-3-color);
+$ansi-4-color: var(--ansi-4-color);
+$ansi-5-color: var(--ansi-5-color);
+$ansi-6-color: var(--ansi-6-color);
+$ansi-7-color: var(--ansi-7-color);
+$ansi-8-color: var(--ansi-8-color);
+$ansi-9-color: var(--ansi-9-color);
+$ansi-10-color: var(--ansi-10-color);
+$ansi-11-color: var(--ansi-11-color);
+$ansi-12-color: var(--ansi-12-color);
+$ansi-13-color: var(--ansi-13-color);
+$ansi-14-color: var(--ansi-14-color);
+$ansi-15-color: var(--ansi-15-color);
