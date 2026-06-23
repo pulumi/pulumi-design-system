@@ -18,6 +18,21 @@ Home for all things Pulumi Design System. This repo currently publishes **design
 | **Helpers** | `_theme-helpers.scss` | `theme()`, `theme-rgba()`, and `theme-swap()` Sass functions |
 | **Mixins** | `_mixins.scss` | Typography mixins (`font-display-large`, `font-body-medium`, etc.) |
 | **Fonts** | `fonts.css` | `@font-face` declarations for Inter, Monaspace Neon, and Material Icons |
+| **www palette** | `tokens/www.json`, `tailwind/www-preset.js`, `scss/www/_colors.scss` | pulumi.com/docs/marketing colors (Gilroy, legacy gray scale) — separate from PDS cloud tokens |
+
+### www / marketing palette (pulumi.com)
+
+For docs and marketing sites on Tailwind v2:
+
+```javascript
+const defaultTheme = require("tailwindcss/defaultTheme");
+const { buildWwwTailwindTheme } = require("@pulumi/design-tokens/tailwind/www-preset");
+const { global } = require("@pulumi/design-tokens/tokens/www.json");
+
+const { colors, rgbColors, extend } = buildWwwTailwindTheme(global, defaultTheme);
+```
+
+SCSS color maps: `@import "@pulumi/design-tokens/scss/www/colors";`
 
 ### Token architecture
 

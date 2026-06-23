@@ -1,13 +1,17 @@
 {
   "name": "@pulumi/design-tokens",
-  "version": "0.1.0",
-  "description": "Pulumi Design System tokens — SCSS and CSS custom properties",
+  "version": "0.2.0",
+  "description": "Pulumi Design System tokens — SCSS, CSS custom properties, and www/marketing palettes",
   "license": "Apache-2.0",
-  "files": ["src/"],
+  "files": ["src/", "tokens/", "tailwind/", "scss/"],
   "exports": {
     "./scss": "./src/global/design-tokens/_index.scss",
     "./scss/mixins": "./src/global/_mixins.scss",
-    "./fonts.css": "./src/global/fonts.css"
+    "./scss/www/colors": "./scss/www/_colors.scss",
+    "./fonts.css": "./src/global/fonts.css",
+    "./tokens/www.json": "./tokens/www.json",
+    "./tailwind/www-preset": "./tailwind/www-preset.js",
+    "./tailwind/color-utils": "./tailwind/color-utils.js"
   },
   "peerDependencies": {
     "sass": ">=1.70.0"
