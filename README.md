@@ -34,7 +34,44 @@ const { colors, rgbColors, extend } = buildWwwTailwindTheme(global, defaultTheme
 
 SCSS color maps: `@import "@pulumi/design-tokens/scss/www/colors";`
 
-### Token architecture
+## Token source of truth (layered)
+
+Human-editable JSON sources live under `tokens/`. SCSS and Tailwind outputs are **generated** — never edit `generated/` by hand.
+
+```
+tokens/
+  core/primitives.json       ← Console/docs canonical palette (gray, violet, blue, …)
+  console/extensions.json    ← Console-only (aqua)
+  marketing/extensions.json  ← Marketing-only (salmon, fuchsia, purple, legacy gray)
+  marketing/meta.json        ← Marketing Tailwind v2 typography/shape metadata
+
+generated/                   ← Output of npm run build:tokens
+  console/_primitive-palettes.scss
+  console/tailwind-v4/_theme.scss
+  marketing/_www-colors.scss
+  token-manifest.json        ← Lists shared vs product-specific tokens and conflicts
+```
+
+**Console** (`src/global/design-tokens/_colors.scss`) imports generated primitive palettes and adds semantic tokens (brand, buttons, dark mode).
+
+**Marketing** (`scss/www/_colors.scss`) re-exports generated marketing palettes.
+
+**Docs Tailwind v4** (`scss/tailwind-v4/_theme.scss`) re-exports generated console theme.
+
+### Updating tokens
+
+```bash
+# 1. Edit tokens/core/primitives.json or tokens/marketing/extensions.json
+# 2. Regenerate outputs
+npm run build:tokens
+
+# 3. Verify (also runs in CI)
+npm run verify:tokens
+```
+
+Check `generated/token-manifest.json` for `overlappingFamiliesWithDifferentValues` — intentional diffs between console and marketing (e.g. legacy www gray vs PDS gray) are listed explicitly.
+
+### Token architecture (console SCSS runtime)
 
 Tokens are organized in three layers:
 

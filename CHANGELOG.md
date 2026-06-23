@@ -1,5 +1,26 @@
 # Changelog
 
+## 0.3.0 — 2026-06-23
+
+### Added
+
+- **Layered token sources**: `tokens/core/`, `tokens/console/`, `tokens/marketing/`
+- `scripts/build-tokens.mjs` — generates SCSS + Tailwind v4 `@theme` from JSON
+- `scripts/verify-tokens.mjs` + CI workflow to prevent generated drift
+- `generated/token-manifest.json` — documents shared vs product-specific tokens and core/marketing conflicts
+
+### Changed
+
+- Console primitive palettes in `_colors.scss` are now generated from JSON
+- `tokens/www.json` is generated from marketing sources (Tailwind v2 backward compat)
+- `scss/tailwind-v4/_theme.scss` and `scss/www/_colors.scss` are thin re-exports of generated files
+
+### Install
+
+```json
+"@pulumi/design-tokens": "github:pulumi/pulumi-design-system#v0.3.0"
+```
+
 ## 0.2.1 — 2026-06-23
 
 ### Added
