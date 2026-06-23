@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.3.1 — 2026-06-23
+
+### Fixed
+
+- Correct relative import paths in `scss/tailwind-v4/_theme.scss` and `scss/www/_colors.scss` so consumers resolve generated files from `node_modules`
+
+### Install
+
+```json
+"@pulumi/design-tokens": "github:pulumi/pulumi-design-system#v0.3.1"
+```
+
 ## 0.3.0 — 2026-06-23
 
 ### Added
