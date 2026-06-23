@@ -279,7 +279,6 @@ function generateTokenManifest(consoleTokens, marketing) {
     }
 
     return {
-        generatedAt: new Date().toISOString(),
         layers: {
             core: {
                 path: "tokens/core/primitives.json",
