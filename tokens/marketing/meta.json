@@ -1,0 +1,47 @@
+{
+    "$description": "Marketing Tailwind v2 metadata (typography, shape) — colors come from tokens/marketing/extensions.json",
+    "typography": {
+        "fontFamilies": {
+            "type": "fontFamilies",
+            "body": { "value": "Inter" },
+            "display": { "value": "Gilroy" },
+            "mono": { "value": "Roboto Mono" }
+        },
+        "headings": {
+            "type": "typeStyle",
+            "2xl": { "value": "Bold", "fontSize": "80px", "fontWeight": "700" },
+            "xl": { "value": "Bold", "fontSize": "72px", "fontWeight": "700" },
+            "l": { "value": "Bold", "fontSize": "64px", "fontWeight": "700" },
+            "m": { "value": "Bold", "fontSize": "48px", "fontWeight": "700" },
+            "s": { "value": "Bold", "fontSize": "40px", "fontWeight": "700" },
+            "xs": { "value": "Semibold", "fontSize": "28px", "fontWeight": "600" },
+            "2xs": { "value": "Semibold", "fontSize": "24px", "fontWeight": "600" },
+            "2xsSmall": { "value": "Semibold", "fontSize": "20px", "fontWeight": "600" }
+        },
+        "body": {
+            "type": "typeStyle",
+            "xl": { "fontSize": "24px" },
+            "l": { "fontSize": "20px" },
+            "m": { "fontSize": "18px" },
+            "s": { "fontSize": "16px" }
+        }
+    },
+    "shape": {
+        "borderWidth": {
+            "type": "borderWidth",
+            "sm": { "value": "1px" },
+            "base": { "value": "2px" }
+        },
+        "borderRadius": {
+            "type": "borderRadius",
+            "sm": { "value": "4px" },
+            "md": { "value": "12px" },
+            "round": { "value": "9999px" }
+        },
+        "boxShadows": {
+            "type": "boxShadow",
+            "light": { "value": "0 6px 36px rgb(0 0 0 / 10%)" },
+            "medium": { "value": "0 4px 4px rgb(0 0 0 / 25%)" }
+        }
+    }
+}
