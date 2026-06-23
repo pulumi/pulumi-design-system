@@ -1,0 +1,68 @@
+@use "../../src/global/design-tokens/colors" as *;
+@use "../../src/global/design-tokens/typography" as *;
+@use "sass:map";
+
+// Tailwind v4 @theme tokens generated from PDS color maps.
+// Maps PDS shade 1000 → Tailwind shade 950 for compatibility with existing utility classes.
+@theme {
+    --color-white: #{$white};
+    --color-black: #{$black};
+    --color-service-black: #{map.get($gray, 1000)};
+    --color-transparent: transparent;
+
+    @each $family, $scale in $colors {
+        @each $shade, $value in $scale {
+            $tw-shade: if($shade == 1000, 950, $shade);
+            --color-#{$family}-#{$tw-shade}: #{$value};
+        }
+    }
+
+    --color-violet-primary: #{map.get($violet, 700)};
+
+    --color-violet-background: #{map.get($violet, 50)};
+    --color-violet-muted: #{map.get($violet, 200)};
+    --color-violet-accent: #{map.get($violet, 500)};
+
+    --color-gray-background: #{map.get($gray, 50)};
+    --color-gray-muted: #{map.get($gray, 200)};
+    --color-gray-accent: #{map.get($gray, 500)};
+    --color-gray-primary: #{map.get($gray, 700)};
+
+    --color-yellow-background: #{map.get($yellow, 50)};
+    --color-yellow-muted: #{map.get($yellow, 200)};
+    --color-yellow-accent: #{map.get($yellow, 500)};
+    --color-yellow-primary: #{map.get($yellow, 700)};
+
+    --color-blue-background: #{map.get($blue, 50)};
+    --color-blue-muted: #{map.get($blue, 200)};
+    --color-blue-accent: #{map.get($blue, 500)};
+    --color-blue-primary: #{map.get($blue, 700)};
+
+    --color-red-background: #{map.get($red, 50)};
+    --color-red-muted: #{map.get($red, 200)};
+    --color-red-accent: #{map.get($red, 500)};
+    --color-red-primary: #{map.get($red, 700)};
+
+    --color-orange-background: #{map.get($orange, 50)};
+    --color-orange-muted: #{map.get($orange, 200)};
+    --color-orange-accent: #{map.get($orange, 500)};
+    --color-orange-primary: #{map.get($orange, 700)};
+
+    --color-green-background: #{map.get($green, 50)};
+    --color-green-muted: #{map.get($green, 200)};
+    --color-green-accent: #{map.get($green, 500)};
+    --color-green-primary: #{map.get($green, 700)};
+
+    --font-display: #{$font-family-primary}, ui-sans-serif, system-ui, sans-serif;
+    --font-body: #{$font-family-primary}, ui-sans-serif, system-ui, sans-serif;
+    --font-mono: #{$font-family-code}, ui-monospace, SFMono-Regular, monospace;
+    --default-font-feature-settings: "liga" 1, "calt" 1, "cv11" 1;
+
+    --breakpoint-sm: 640px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 1024px;
+    --breakpoint-xl: 1280px;
+    --breakpoint-xxl: 1536px;
+    --shadow-3xl: 0 35px 70px -20px rgba(0, 0, 0, 0.5);
+    --leading-extra-tight: 1.1;
+}

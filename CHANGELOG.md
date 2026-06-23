@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.2.1 — 2026-06-23
+
+### Added
+
+- `scss/tailwind-v4/_theme.scss` — Tailwind v4 `@theme` block generated from PDS color maps (for pulumi.com/docs)
+
+### Install
+
+```json
+"@pulumi/design-tokens": "github:pulumi/pulumi-design-system#v0.2.1"
+```
+
 ## 0.2.0 — 2026-06-22
 
 ### Added
