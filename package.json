@@ -1,23 +1,18 @@
 {
   "name": "@pulumi/design-tokens",
-  "version": "0.3.1",
-  "description": "Pulumi Design System tokens — layered JSON source with generated SCSS and Tailwind outputs",
+  "version": "0.4.0",
+  "description": "Pulumi Design System tokens — JSON source of truth for color primitives and semantic aliases",
   "license": "Apache-2.0",
-  "files": ["src/", "tokens/", "generated/", "tailwind/", "scss/", "scripts/build-tokens.mjs", "scripts/verify-tokens.mjs"],
-  "scripts": {
-    "build:tokens": "node scripts/build-tokens.mjs",
-    "verify:tokens": "node scripts/verify-tokens.mjs"
-  },
+  "files": ["tokens/", "src/"],
   "exports": {
+    "./tokens/core/primitives.json": "./tokens/core/primitives.json",
+    "./tokens/core/semantic.json": "./tokens/core/semantic.json",
+    "./tokens/console/extensions.json": "./tokens/console/extensions.json",
+    "./tokens/marketing/extensions.json": "./tokens/marketing/extensions.json",
+    "./tokens/marketing/meta.json": "./tokens/marketing/meta.json",
     "./scss": "./src/global/design-tokens/_index.scss",
     "./scss/mixins": "./src/global/_mixins.scss",
-    "./scss/www/colors": "./scss/www/_colors.scss",
-    "./scss/tailwind-v4/theme": "./scss/tailwind-v4/_theme.scss",
-    "./fonts.css": "./src/global/fonts.css",
-    "./tokens/www.json": "./tokens/www.json",
-    "./tokens/manifest.json": "./generated/token-manifest.json",
-    "./tailwind/www-preset": "./tailwind/www-preset.js",
-    "./tailwind/color-utils": "./tailwind/color-utils.js"
+    "./fonts.css": "./src/global/fonts.css"
   },
   "peerDependencies": {
     "sass": ">=1.70.0"

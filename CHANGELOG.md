@@ -1,5 +1,35 @@
 # Changelog
 
+## 0.4.0 — 2026-06-30
+
+### Added
+
+- **Brand-aligned color scale**: core palettes use `50–950` nomenclature per [brand.pulumi.com/identity/color](https://brand.pulumi.com/identity/color) (`950` replaces former `1000`; hex values unchanged)
+- `tokens/core/semantic.json` — shared semantic color tokens (`success`, `brand-violet`, etc.) referencing primitives via `{family.shade}` syntax
+- `utility.service-black` (`#1f1b21`) in `tokens/core/primitives.json`
+- JSON package exports for all token sources (`tokens/core/primitives.json`, `tokens/core/semantic.json`, `tokens/console/extensions.json`, `tokens/marketing/extensions.json`, `tokens/marketing/meta.json`)
+- `tokens/README.md` and `tokens/DISCREPANCIES.md` documenting architecture and known mismatches
+
+### Changed
+
+- **JSON is the source of truth for color hex values** — consumers translate to SCSS, Tailwind, and CSS variables in their own repos
+- Remaining SCSS exports (`./scss`, `./scss/mixins`) cover typography, spacing, shape, and size only; color mixins use CSS custom properties with core palette fallbacks
+
+### Removed
+
+- `scripts/build-tokens.mjs`, `scripts/verify-tokens.mjs`, and CI verify workflow
+- `generated/` SCSS and Tailwind outputs
+- `tailwind/www-preset.js`, `tailwind/color-utils.js`, `scss/www/_colors.scss`, `scss/tailwind-v4/_theme.scss`
+- `tokens/www.json` (was generated from marketing JSON)
+- Console color SCSS layer: `_colors.scss`, `_colors-dark.scss`, `_color-vars.scss`, `_theme.scss`, `_theme-helpers.scss`, `_decision-tokens.scss`
+- Package exports: `./tokens/www.json`, `./tokens/manifest.json`, `./scss/www/colors`, `./scss/tailwind-v4/theme`, `./tailwind/www-preset`, `./tailwind/color-utils`
+
+### Install
+
+```json
+"@pulumi/design-tokens": "github:pulumi/pulumi-design-system#v0.4.0"
+```
+
 ## 0.3.1 — 2026-06-23
 
 ### Fixed

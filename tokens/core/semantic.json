@@ -1,0 +1,18 @@
+{
+    "$description": "Shared semantic color tokens referencing core primitives. Properties define additional semantics in their own layers (e.g. console _colors.scss, marketing brand map). Reference syntax: {family.shade} or {utility.name}.",
+    "$product": "core",
+    "tokens": {
+        "brand-violet": "{violet.700}",
+        "brand-orange": "{orange.600}",
+        "brand-blue": "{blue.800}",
+        "info": "{blue.800}",
+        "success": "{green.800}",
+        "warning": "{yellow.800}",
+        "failure": "{red.800}",
+        "disabled": "{gray.500}",
+        "text-body": "{gray.950}",
+        "text-heading": "{gray.700}",
+        "text-detail": "{gray.800}",
+        "text-sub-heading": "{gray.800}"
+    }
+}

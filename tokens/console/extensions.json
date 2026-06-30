@@ -1,5 +1,5 @@
 {
-    "$description": "Console-only primitive palettes — not used by marketing.",
+    "$description": "Console-only primitive palettes — not in brand guidelines; extends core for Pulumi Cloud.",
     "$product": "console",
     "palettes": {
         "aqua": {
@@ -13,7 +13,7 @@
             "700": "#00756c",
             "800": "#075f59",
             "900": "#114642",
-            "1000": "#101e1d"
+            "950": "#101e1d"
         }
     }
 }

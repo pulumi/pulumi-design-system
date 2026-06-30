@@ -268,24 +268,24 @@ $xl-desktop-width: 1275px;
 
     @include font-body-medium;
 
-    color: theme(gray-700);
+    color: var(--gray-700, #6a6675);
     padding: $spacing-s $spacing-xl $spacing-l $spacing-xl;
     display: flex;
     align-items: center;
     justify-content: center;
 
     &:not(.selected):hover {
-        color: theme(gray-1000);
+        color: var(--gray-950, #2e2932);
     }
 
     &.selected {
-        color: theme(violet-800);
-        border-bottom: 2px solid theme(violet-800);
+        color: var(--violet-800, #492e8e);
+        border-bottom: 2px solid var(--violet-800, #492e8e);
     }
 
     &.disabled,
     &:disabled {
-        color: theme(gray-1000);
+        color: var(--gray-950, #2e2932);
         opacity: 0.3;
         cursor: not-allowed;
     }
@@ -314,11 +314,11 @@ $xl-desktop-width: 1275px;
             transition: background-color 0.2s;
 
             &:hover {
-                background-color: theme(gray-100);
+                background-color: var(--gray-100, #efeff0);
             }
 
             &:focus-visible {
-                outline: 2px solid theme(violet-800);
+                outline: 2px solid var(--violet-800, #492e8e);
                 outline-offset: 2px;
             }
         }
