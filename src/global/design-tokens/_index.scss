@@ -1,9 +1,3 @@
-@forward "./colors";
-@forward "./colors-dark";
-@forward "./color-vars";
-@forward "./theme";
-@forward "./theme-helpers";
-@forward "./decision-tokens";
 @forward "./typography";
 @forward "./shape";
 @forward "./spacing";
@@ -11,3 +5,4 @@
 
 // This file is only for exporting all our individual design tokens files, for easy import and use in style sheets.
 // Do not put any styles or design tokens directly into this file.
+// Color tokens live in tokens/*.json — consumers translate to SCSS/Tailwind/CSS locally.

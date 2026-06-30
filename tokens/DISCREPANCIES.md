@@ -14,22 +14,20 @@ Audit against [brand.pulumi.com/identity/color](https://brand.pulumi.com/identit
 
 | Token | Brand guideline | Current repo usage | Status |
 |-------|-----------------|-------------------|--------|
-| `service-black` | `#1f1b21` (utility, brand.pulumi.com) | `#2e2932` (`gray-950`) used for `--color-service-black` in Tailwind theme | **Mismatch** — repo uses gray-950, not brand utility service-black |
-| `service-black` | `#1f1b21` | Stored in `tokens/core/primitives.json` → `utility.service-black` | Documented for future adoption |
+| `service-black` | `#1f1b21` (utility, brand.pulumi.com) | Stored in `tokens/core/primitives.json` → `utility.service-black` | Available; consumers choose whether to use vs `gray-950` (`#2e2932`) |
 
-## Console-specific (not in core JSON)
+## Console-specific (historical — now defined in consumer repos)
+
+These were previously in console SCSS and should be re-established by consumers when translating JSON:
 
 | Token | Value | Notes |
 |-------|-------|-------|
-| `$color-brand-yellow` | `#fed05d` | Not a palette step; closest core yellow is 300 (`#fdcf4c`) |
-| `$color-stack-favorites` | `#fb9746` | Matches `orange-400` in core |
-| Identity provider colors | Various | Third-party brand colors, intentionally outside core |
+| Brand yellow | `#fed05d` | Not a palette step; closest core yellow is 300 (`#fdcf4c`) |
+| Stack favorites | `#fb9746` | Matches `orange-400` in core |
 
 ## Marketing legacy vs core
 
 Marketing (`tokens/marketing/extensions.json`) intentionally uses **different hex values** for shared family names (gray, violet, blue, orange, green, yellow). These are legacy pulumi.com scales with non-standard steps (112, 125, 925, etc.).
-
-Full conflict list: `generated/token-manifest.json` → `summary.overlappingFamiliesWithDifferentValues`.
 
 **Examples:**
 
@@ -44,6 +42,6 @@ Marketing-only families (`salmon`, `fuchsia`, `purple`) and brand map entries ha
 
 ## Follow-up
 
-1. Decide whether `--color-service-black` should switch to `#1f1b21` or remain `gray-950`
+1. Decide whether consumers use `utility.service-black` (`#1f1b21`) or `gray-950` (`#2e2932`) for service black
 2. Migrate marketing consumers to core palettes where feasible
-3. Resolve `$color-brand-yellow` against core yellow scale or add to semantic tokens
+3. Resolve console brand yellow against core yellow scale or add to semantic tokens
