@@ -19,7 +19,7 @@ import marketingExt from "@pulumi/design-tokens/tokens/marketing/extensions.json
 ```
 tokens/
   core/
-    primitives.json          ← Canonical palette (50–950, brand.pulumi.com; includes aqua)
+    primitives.json          ← Canonical palette (50–950, brand.pulumi.com)
     semantic.json            ← Shared semantic tokens ({green.800}, etc.)
   marketing/
     extensions.json          ← Marketing-only (salmon, fuchsia, purple, legacy gray)

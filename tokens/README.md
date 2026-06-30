@@ -7,7 +7,7 @@ JSON source of truth for `@pulumi/design-tokens`. Edit files here directly — t
 ```
 tokens/
   core/
-    primitives.json    ← Single source of truth for hex values (50–950 scale, brand.pulumi.com; includes aqua)
+    primitives.json    ← Single source of truth for hex values (50–950 scale, brand.pulumi.com)
     semantic.json      ← Shared semantic tokens referencing primitives ({green.800}, etc.)
   marketing/
     extensions.json    ← Marketing-only palettes + brand colors (legacy www scales)
