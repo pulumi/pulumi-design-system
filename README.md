@@ -11,7 +11,6 @@ All hex values live under `tokens/`. **Consumers** (console2, docs, marketing) t
 ```javascript
 import primitives from "@pulumi/design-tokens/tokens/core/primitives.json";
 import semantic from "@pulumi/design-tokens/tokens/core/semantic.json";
-import consoleExt from "@pulumi/design-tokens/tokens/console/extensions.json";
 import marketingExt from "@pulumi/design-tokens/tokens/marketing/extensions.json";
 ```
 
@@ -22,7 +21,6 @@ tokens/
   core/
     primitives.json          ← Canonical palette (50–950, brand.pulumi.com)
     semantic.json            ← Shared semantic tokens ({green.800}, etc.)
-  console/extensions.json    ← Console-only (aqua)
   marketing/
     extensions.json          ← Marketing-only (salmon, fuchsia, purple, legacy gray)
     meta.json                ← Marketing typography/shape metadata
