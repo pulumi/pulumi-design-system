@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.4.2 — 2026-06-30
+
+### Removed
+
+- `tokens/marketing/` — legacy www palettes, brand map, and typography/shape metadata belong in consumer repos, not the shared token source
+
+### Install
+
+```json
+"@pulumi/design-tokens": "github:pulumi/pulumi-design-system#v0.4.2"
+```
+
 ## 0.4.1 — 2026-06-30
 
 ### Changed

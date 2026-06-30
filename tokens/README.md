@@ -9,9 +9,6 @@ tokens/
   core/
     primitives.json    ← Single source of truth for hex values (50–950 scale, brand.pulumi.com)
     semantic.json      ← Shared semantic tokens referencing primitives ({green.800}, etc.)
-  marketing/
-    extensions.json    ← Marketing-only palettes + brand colors (legacy www scales)
-    meta.json          ← Marketing typography/shape (not colors)
 ```
 
 **All hex codes live in this repo.** Properties (console2, docs, marketing) consume these JSON files and translate to SCSS, Tailwind, CSS variables, or property-specific semantics in their own codebases.
@@ -24,9 +21,8 @@ Palettes use **50, 100, 200, …, 900, 950** per [brand.pulumi.com/identity/colo
 
 | Layer | Purpose |
 |-------|---------|
-| **Core primitives** | Canonical palette shared across properties |
+| **Core primitives** | Canonical palette shared across all properties |
 | **Core semantic** | Cross-property aliases (`success` → `{green.800}`, `brand-violet` → `{violet.700}`) |
-| **Property extensions** | Additions only — marketing adds `salmon`, `fuchsia`, `purple`, legacy gray |
 | **Property semantics** | Defined at consumption time in each property's repo |
 
 ### Reference syntax
@@ -40,6 +36,4 @@ Semantic tokens reference primitives using `{family.shade}` or `{utility.name}`:
 }
 ```
 
-Marketing palettes may reference brand colors as `{brand.salmon}` within `tokens/marketing/extensions.json`.
-
-See [DISCREPANCIES.md](./DISCREPANCIES.md) for known mismatches between brand guidelines, core, and legacy marketing values.
+See [DISCREPANCIES.md](./DISCREPANCIES.md) for known mismatches with brand guidelines and historical consumer values.

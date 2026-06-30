@@ -1,5 +1,5 @@
 {
-    "$description": "Shared semantic color tokens referencing core primitives. Properties define additional semantics in their own layers (e.g. console _colors.scss, marketing brand map). Reference syntax: {family.shade} or {utility.name}.",
+    "$description": "Shared semantic color tokens referencing core primitives. Properties define additional semantics in their own repos. Reference syntax: {family.shade} or {utility.name}.",
     "$product": "core",
     "tokens": {
         "brand-violet": "{violet.700}",

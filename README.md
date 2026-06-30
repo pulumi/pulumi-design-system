@@ -6,12 +6,11 @@ Home for Pulumi Design System tokens. This repo publishes **JSON color tokens** 
 
 ### Color tokens (JSON)
 
-All hex values live under `tokens/`. **Consumers** (console2, docs, marketing) translate these to SCSS, Tailwind, CSS variables, or property-specific semantics locally.
+All hex values live under `tokens/core/`. **Consumers** (console2, docs, marketing) translate these to SCSS, Tailwind, CSS variables, or property-specific semantics locally.
 
 ```javascript
 import primitives from "@pulumi/design-tokens/tokens/core/primitives.json";
 import semantic from "@pulumi/design-tokens/tokens/core/semantic.json";
-import marketingExt from "@pulumi/design-tokens/tokens/marketing/extensions.json";
 ```
 
 ### Token layers
@@ -21,12 +20,9 @@ tokens/
   core/
     primitives.json          ← Canonical palette (50–950, brand.pulumi.com)
     semantic.json            ← Shared semantic tokens ({green.800}, etc.)
-  marketing/
-    extensions.json          ← Marketing-only (salmon, fuchsia, purple, legacy gray)
-    meta.json                ← Marketing typography/shape metadata
 ```
 
-See `tokens/README.md` and `tokens/DISCREPANCIES.md` for architecture and known color mismatches.
+See `tokens/README.md` and `tokens/DISCREPANCIES.md` for architecture and known mismatches.
 
 ### Semantic tokens
 
@@ -52,7 +48,7 @@ Typography, spacing, shape, and size tokens remain as SCSS partials for PDS/cons
 
 ### Updating color tokens
 
-Edit JSON under `tokens/` directly. No build step in this repo.
+Edit JSON under `tokens/core/` directly. No build step in this repo.
 
 ### Roadmap
 
