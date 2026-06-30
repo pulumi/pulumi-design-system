@@ -1,5 +1,5 @@
 {
-    "$description": "Canonical Pulumi color primitives — aligned with brand.pulumi.com/identity/color (50–950 scale). All hex values are the single source of truth; properties reference these via extensions and their own semantic layers.",
+    "$description": "Canonical Pulumi color primitives — aligned with brand.pulumi.com/identity/color (50–950 scale). All hex values are the single source of truth; properties reference these and define their own semantic layers.",
     "$product": "core",
     "white": "#fff",
     "black": "#000",
@@ -7,6 +7,19 @@
         "service-black": "#1f1b21"
     },
     "palettes": {
+        "aqua": {
+            "50": "#f5fffd",
+            "100": "#ccfff5",
+            "200": "#5cffde",
+            "300": "#1efad9",
+            "400": "#02d9c0",
+            "500": "#00a896",
+            "600": "#008f83",
+            "700": "#00756c",
+            "800": "#075f59",
+            "900": "#114642",
+            "950": "#101e1d"
+        },
         "gray": {
             "50": "#fafafa",
             "100": "#efeff0",

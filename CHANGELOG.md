@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.4.1 — 2026-06-30
+
+### Changed
+
+- Moved `aqua` palette into `tokens/core/primitives.json` (already defined on brand.pulumi.com)
+
+### Removed
+
+- `tokens/console/extensions.json` and `./tokens/console/extensions.json` package export
+
+### Install
+
+```json
+"@pulumi/design-tokens": "github:pulumi/pulumi-design-system#v0.4.1"
+```
+
 ## 0.4.0 — 2026-06-30
 
 ### Added
@@ -7,7 +23,7 @@
 - **Brand-aligned color scale**: core palettes use `50–950` nomenclature per [brand.pulumi.com/identity/color](https://brand.pulumi.com/identity/color) (`950` replaces former `1000`; hex values unchanged)
 - `tokens/core/semantic.json` — shared semantic color tokens (`success`, `brand-violet`, etc.) referencing primitives via `{family.shade}` syntax
 - `utility.service-black` (`#1f1b21`) in `tokens/core/primitives.json`
-- JSON package exports for all token sources (`tokens/core/primitives.json`, `tokens/core/semantic.json`, `tokens/console/extensions.json`, `tokens/marketing/extensions.json`, `tokens/marketing/meta.json`)
+- JSON package exports for all token sources (`tokens/core/primitives.json`, `tokens/core/semantic.json`, `tokens/marketing/extensions.json`, `tokens/marketing/meta.json`)
 - `tokens/README.md` and `tokens/DISCREPANCIES.md` documenting architecture and known mismatches
 
 ### Changed

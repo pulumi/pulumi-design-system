@@ -7,10 +7,8 @@ JSON source of truth for `@pulumi/design-tokens`. Edit files here directly — t
 ```
 tokens/
   core/
-    primitives.json    ← Single source of truth for hex values (50–950 scale, brand.pulumi.com)
+    primitives.json    ← Single source of truth for hex values (50–950 scale, brand.pulumi.com; includes aqua)
     semantic.json      ← Shared semantic tokens referencing primitives ({green.800}, etc.)
-  console/
-    extensions.json    ← Console-only palettes (aqua)
   marketing/
     extensions.json    ← Marketing-only palettes + brand colors (legacy www scales)
     meta.json          ← Marketing typography/shape (not colors)
@@ -28,7 +26,7 @@ Palettes use **50, 100, 200, …, 900, 950** per [brand.pulumi.com/identity/colo
 |-------|---------|
 | **Core primitives** | Canonical palette shared across properties |
 | **Core semantic** | Cross-property aliases (`success` → `{green.800}`, `brand-violet` → `{violet.700}`) |
-| **Property extensions** | Additions only — console adds `aqua`; marketing adds `salmon`, `fuchsia`, `purple`, legacy gray |
+| **Property extensions** | Additions only — marketing adds `salmon`, `fuchsia`, `purple`, legacy gray |
 | **Property semantics** | Defined at consumption time in each property's repo |
 
 ### Reference syntax
