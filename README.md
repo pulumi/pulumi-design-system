@@ -1,6 +1,6 @@
 # pulumi-design-system
 
-Home for Pulumi Design System tokens. This repo publishes **JSON color tokens** as the single source of truth for hex values, plus legacy SCSS for non-color tokens (typography, spacing, shape).
+Home for Pulumi Design System tokens. This repo publishes **JSON color tokens** as the single source of truth for hex values, plus legacy SCSS for typography and spacing.
 
 ## Package: `@pulumi/design-tokens`
 
@@ -22,7 +22,7 @@ tokens/
     semantic.json            ← Shared semantic tokens ({green.800}, etc.)
 ```
 
-See `tokens/README.md` and `tokens/DISCREPANCIES.md` for architecture and known mismatches.
+See `tokens/README.md` for architecture.
 
 ### Semantic tokens
 
@@ -30,20 +30,15 @@ Shared semantics in `tokens/core/semantic.json` use plain names (e.g. `success`,
 
 ### Non-color SCSS (legacy)
 
-Typography, spacing, shape, and size tokens remain as SCSS partials for PDS/console until migrated to JSON:
+Typography and spacing tokens remain as SCSS partials under `src/global/` until migrated to JSON:
 
 | Category | Source |
 |----------|--------|
-| **Typography** | `_typography.scss` |
-| **Spacing** | `_spacing.scss` |
-| **Shape** | `_shape.scss` |
-| **Size** | `_size.scss` |
-| **Mixins** | `_mixins.scss` |
-| **Fonts** | `fonts.css` |
+| **Typography** | `src/global/_typography.scss` |
+| **Spacing** | `src/global/_spacing.scss` |
 
 ```scss
 @use "@pulumi/design-tokens/scss" as *;
-@use "@pulumi/design-tokens/scss/mixins" as *;
 ```
 
 ### Updating color tokens
@@ -63,8 +58,8 @@ No build step required for color tokens.
 To verify non-color SCSS compiles:
 
 ```bash
-echo '@use "src/global/design-tokens/index" as *; .x { padding: $spacing-m; }' \
-  | npx sass --stdin --load-path=src/global/design-tokens
+echo '@use "src/global/index" as *; .x { padding: $spacing-m; }' \
+  | npx sass --stdin --load-path=src/global
 ```
 
 ## License

@@ -1,15 +1,13 @@
 {
   "name": "@pulumi/design-tokens",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "Pulumi Design System tokens — JSON source of truth for color primitives and semantic aliases",
   "license": "Apache-2.0",
   "files": ["tokens/", "src/"],
   "exports": {
     "./tokens/core/primitives.json": "./tokens/core/primitives.json",
     "./tokens/core/semantic.json": "./tokens/core/semantic.json",
-    "./scss": "./src/global/design-tokens/_index.scss",
-    "./scss/mixins": "./src/global/_mixins.scss",
-    "./fonts.css": "./src/global/fonts.css"
+    "./scss": "./src/global/_index.scss"
   },
   "peerDependencies": {
     "sass": ">=1.70.0"

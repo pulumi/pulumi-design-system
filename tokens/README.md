@@ -36,4 +36,3 @@ Semantic tokens reference primitives using `{family.shade}` or `{utility.name}`:
 }
 ```
 
-See [DISCREPANCIES.md](./DISCREPANCIES.md) for known mismatches with brand guidelines and historical consumer values.

@@ -1,5 +1,25 @@
 # Changelog
 
+## 0.4.3 — 2026-06-30
+
+### Changed
+
+- Moved typography and spacing SCSS from `src/global/design-tokens/` to `src/global/`
+- `./scss` export now points to `src/global/_index.scss`
+
+### Removed
+
+- `src/global/design-tokens/_shape.scss` and `_size.scss`
+- `src/global/design-tokens/` directory
+- `fonts.css` and `./fonts.css` package export
+- `./scss/mixins` package export (mixins removed in prior release)
+
+### Install
+
+```json
+"@pulumi/design-tokens": "github:pulumi/pulumi-design-system#v0.4.3"
+```
+
 ## 0.4.2 — 2026-06-30
 
 ### Removed
