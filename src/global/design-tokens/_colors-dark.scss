@@ -21,7 +21,7 @@ $gray-dark: (
     /* Primary*/ 800: #e0dfe2,
 
     900: #efeff0,
-    1000: #fafafa,
+    950: #fafafa,
 );
 $violet-dark: (
     50: #231f33,
@@ -37,7 +37,7 @@ $violet-dark: (
     /* Primary*/ 800: #dedbff,
 
     900: #ebebff,
-    1000: #f5f5ff,
+    950: #f5f5ff,
 );
 $aqua-dark: (
     50: #101e1d,
@@ -53,7 +53,7 @@ $aqua-dark: (
     /* Primary*/ 800: #5cffde,
 
     900: #ccfff5,
-    1000: #f5fffd,
+    950: #f5fffd,
 );
 $green-dark: (
     50: #202723,
@@ -69,7 +69,7 @@ $green-dark: (
     /* Primary, Success*/ 800: #b6fbce,
 
     900: #dffce9,
-    1000: #f6fdf9,
+    950: #f6fdf9,
 );
 $orange-dark: (
     50: #33231f,
@@ -85,7 +85,7 @@ $orange-dark: (
     /* Text Primary*/ 800: #fedbb3,
 
     900: #ffebd1,
-    1000: #fffaf5,
+    950: #fffaf5,
 );
 $red-dark: (
     50: #331f20,
@@ -101,7 +101,7 @@ $red-dark: (
     /* Primary, Error, Destructive*/ 800: #ffc7ca,
 
     900: #ffe0e1,
-    1000: #fff5f6,
+    950: #fff5f6,
 );
 $blue-dark: (
     50: #283048,
@@ -117,7 +117,7 @@ $blue-dark: (
     /* Primary*/ 800: #cce4ff,
 
     900: #e5f1ff,
-    1000: #f5faff,
+    950: #f5faff,
 );
 
 // Dark mode yellow palette
@@ -135,7 +135,7 @@ $yellow-dark: (
     /* Text Primary*/ 800: #fde38a,
 
     900: #fef2c7,
-    1000: #fffbeb,
+    950: #fffbeb,
 );
 
 // Dark mode base colors
@@ -197,7 +197,7 @@ $color-identity-google-dark: #4285f4;
 $color-text-sub-heading-dark: map.get($gray-dark, 800);
 $color-text-detail-dark: map.get($gray-dark, 800);
 $color-text-heading-dark: map.get($gray-dark, 700);
-$color-text-body-dark: map.get($gray-dark, 1000);
+$color-text-body-dark: map.get($gray-dark, 950);
 $color-unknown-other-dark: map.get($gray-dark, 400);
 
 // Dark mode context-specific

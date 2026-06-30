@@ -4,7 +4,8 @@
  * Build SCSS and Tailwind outputs from layered token JSON sources.
  *
  * Source of truth:
- *   tokens/core/primitives.json      — shared console/docs palette
+ *   tokens/core/primitives.json      — shared palette (50–950, brand.pulumi.com)
+ *   tokens/core/semantic.json        — shared semantic tokens referencing primitives
  *   tokens/console/extensions.json   — console-only (e.g. aqua)
  *   tokens/marketing/extensions.json — marketing-only (salmon, fuchsia, legacy gray)
  */
@@ -31,9 +32,37 @@ function mergeConsolePalettes() {
     return {
         white: core.white,
         black: core.black,
+        utility: core.utility ?? {},
         palettes: { ...core.palettes, ...consoleExt.palettes },
         product: "console",
     };
+}
+
+function resolveSemanticRef(value, context) {
+    if (typeof value !== "string") return value;
+    const paletteMatch = value.match(/^\{([a-z]+)\.(\d+)\}$/);
+    if (paletteMatch) {
+        const [, family, shade] = paletteMatch;
+        const hex = context.palettes[family]?.[shade];
+        if (!hex) throw new Error(`Unknown palette reference: ${value}`);
+        return hex;
+    }
+    const utilityMatch = value.match(/^\{utility\.([a-z-]+)\}$/);
+    if (utilityMatch) {
+        const key = utilityMatch[1];
+        const hex = context.utility?.[key];
+        if (!hex) throw new Error(`Unknown utility reference: ${value}`);
+        return hex;
+    }
+    return value;
+}
+
+function resolveSemanticTokens(semanticJson, context) {
+    const resolved = {};
+    for (const [name, ref] of Object.entries(semanticJson.tokens)) {
+        resolved[name] = resolveSemanticRef(ref, context);
+    }
+    return resolved;
 }
 
 function readMarketingTokens() {
@@ -93,7 +122,19 @@ $single-colors: (
     "white": $white,
     "black": $black,
 );
-$color-shades: 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000;
+$color-shades: 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950;
+`;
+}
+
+function generateCoreSemanticScss(resolvedSemantic) {
+    const lines = Object.entries(resolvedSemantic).map(
+        ([name, hex]) => `$semantic-${name}: ${hex};`,
+    );
+    return `${HEADER}
+// Shared semantic tokens from tokens/core/semantic.json — reference only.
+// Properties may alias these or define additional semantics locally.
+
+${lines.join("\n")}
 `;
 }
 
@@ -105,15 +146,14 @@ function generateConsoleTailwindV4ThemeScss(consoleTokens) {
 @theme {
     --color-white: ${white};
     --color-black: ${black};
-    --color-service-black: ${palettes.gray["1000"]};
+    --color-service-black: ${palettes.gray["950"]};
     --color-transparent: transparent;
 `,
     ];
 
     for (const [family, scale] of Object.entries(palettes)) {
         for (const [shade, value] of Object.entries(scale)) {
-            const twShade = shade === "1000" ? "950" : shade;
-            lines.push(`    --color-${family}-${twShade}: ${value};`);
+            lines.push(`    --color-${family}-${shade}: ${value};`);
         }
     }
 
@@ -283,6 +323,11 @@ function generateTokenManifest(consoleTokens, marketing) {
             core: {
                 path: "tokens/core/primitives.json",
                 families: [...coreFamilies],
+                scale: "50–950 (brand.pulumi.com)",
+            },
+            semantic: {
+                path: "tokens/core/semantic.json",
+                tokenCount: Object.keys(readJson("tokens/core/semantic.json").tokens).length,
             },
             console: {
                 path: "tokens/console/extensions.json",
@@ -315,7 +360,10 @@ function writeGenerated(relativePath, content) {
 function main() {
     const consoleTokens = mergeConsolePalettes();
     const marketing = readMarketingTokens();
+    const semanticJson = readJson("tokens/core/semantic.json");
+    const resolvedSemantic = resolveSemanticTokens(semanticJson, consoleTokens);
 
+    writeGenerated("core/_semantic-tokens.scss", generateCoreSemanticScss(resolvedSemantic));
     writeGenerated("console/_primitive-palettes.scss", generateConsolePrimitivePalettesScss(consoleTokens));
     writeGenerated("console/tailwind-v4/_theme.scss", generateConsoleTailwindV4ThemeScss(consoleTokens));
     writeGenerated("marketing/_www-colors.scss", generateMarketingWwwColorsScss(marketing));

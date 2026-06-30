@@ -275,7 +275,7 @@ $xl-desktop-width: 1275px;
     justify-content: center;
 
     &:not(.selected):hover {
-        color: theme(gray-1000);
+        color: theme(gray-950);
     }
 
     &.selected {
@@ -285,7 +285,7 @@ $xl-desktop-width: 1275px;
 
     &.disabled,
     &:disabled {
-        color: theme(gray-1000);
+        color: theme(gray-950);
         opacity: 0.3;
         cursor: not-allowed;
     }

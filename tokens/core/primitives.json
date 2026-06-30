@@ -1,8 +1,11 @@
 {
-    "$description": "Console/PDS primitive palettes — canonical for Pulumi Cloud and pulumi.com docs (Tailwind v4). Marketing legacy ramps live in tokens/marketing/extensions.json.",
+    "$description": "Canonical Pulumi color primitives — aligned with brand.pulumi.com/identity/color (50–950 scale). All hex values are the single source of truth; properties reference these via extensions and their own semantic layers.",
     "$product": "core",
     "white": "#fff",
     "black": "#000",
+    "utility": {
+        "service-black": "#1f1b21"
+    },
     "palettes": {
         "gray": {
             "50": "#fafafa",
@@ -15,7 +18,7 @@
             "700": "#6a6675",
             "800": "#56535a",
             "900": "#46434c",
-            "1000": "#2e2932"
+            "950": "#2e2932"
         },
         "violet": {
             "50": "#f5f5ff",
@@ -28,7 +31,7 @@
             "700": "#5a30c5",
             "800": "#492e8e",
             "900": "#392960",
-            "1000": "#231f33"
+            "950": "#231f33"
         },
         "blue": {
             "50": "#f5faff",
@@ -41,7 +44,7 @@
             "700": "#1e57eb",
             "800": "#1e47c2",
             "900": "#28448a",
-            "1000": "#283048"
+            "950": "#283048"
         },
         "yellow": {
             "50": "#fffbeb",
@@ -54,7 +57,7 @@
             "700": "#b54f08",
             "800": "#933d0d",
             "900": "#723213",
-            "1000": "#371d11"
+            "950": "#371d11"
         },
         "red": {
             "50": "#fff5f6",
@@ -67,7 +70,7 @@
             "700": "#bd141c",
             "800": "#96171e",
             "900": "#611f22",
-            "1000": "#331f20"
+            "950": "#331f20"
         },
         "orange": {
             "50": "#fffaf5",
@@ -80,7 +83,7 @@
             "700": "#b23c0b",
             "800": "#923111",
             "900": "#693420",
-            "1000": "#33231f"
+            "950": "#33231f"
         },
         "green": {
             "50": "#f6fdf9",
@@ -93,7 +96,7 @@
             "700": "#1c7d41",
             "800": "#165a31",
             "900": "#1c3f2b",
-            "1000": "#202723"
+            "950": "#202723"
         }
     }
 }

@@ -178,7 +178,7 @@
 /// Semantic color aliases for common use cases
 /// These provide more meaningful names for frequently used colors
 @function theme-text-primary() {
-    @return theme(gray-1000);
+    @return theme(gray-950);
 }
 
 @function theme-text-secondary() {

@@ -39,11 +39,11 @@ $decision-tokens: (
         theme-swap($white, $color-dark-mode-surface-background),
     /* Card backgrounds (expansion panels, cards)*/ card-background-color:
         theme-swap($white, $color-dark-mode-card-background),
-    pulumi-card-gray-background-color: theme-swap(map.get($violet, 50), map.get($violet, 1000)),
-    pulumi-card-green-background-color: theme-swap(map.get($green, 50), map.get($aqua, 1000)),
+    pulumi-card-gray-background-color: theme-swap(map.get($violet, 50), map.get($violet, 950)),
+    pulumi-card-green-background-color: theme-swap(map.get($green, 50), map.get($aqua, 950)),
     pulumi-card-green-border-color: theme-swap(map.get($green, 200), map.get($aqua, 200)),
     /* Page backgrounds*/ page-background-color: theme-swap(transparent, $color-dark-mode-page-background),
-    /* Button colors - General*/ button-focus-shadow: theme-swap(map.get($violet, 300), map.get($violet, 1000)),
+    /* Button colors - General*/ button-focus-shadow: theme-swap(map.get($violet, 300), map.get($violet, 950)),
     /* Primary buttons*/ button-primary-text: theme-swap($white, $white),
     button-primary-default-background: theme-swap(map.get($violet, 800), map.get($violet, 800)),
     button-primary-hover-background: theme-swap(map.get($violet, 700), map.get($violet, 700)),
@@ -74,9 +74,9 @@ $decision-tokens: (
     /* Secondary buttons - Warning variant*/ button-secondary-warning-default-text:
         theme-swap(map.get($orange, 800), map.get($orange, 500)),
     button-secondary-warning-default-border: theme-swap(map.get($orange, 500), map.get($orange, 500)),
-    button-secondary-warning-hover-text: theme-swap(map.get($orange, 800), map.get($orange, 1000)),
+    button-secondary-warning-hover-text: theme-swap(map.get($orange, 800), map.get($orange, 950)),
     button-secondary-warning-hover-background: theme-swap(map.get($orange, 100), map.get($orange, 400)),
-    button-secondary-warning-active-text: theme-swap(map.get($orange, 900), map.get($orange, 1000)),
+    button-secondary-warning-active-text: theme-swap(map.get($orange, 900), map.get($orange, 950)),
     button-secondary-warning-active-background: theme-swap(map.get($orange, 100), map.get($orange, 600)),
     button-secondary-warning-disabled-text: theme-swap-rgba(map.get($orange, 800), 0.4),
     button-secondary-warning-disabled-border: theme-swap-rgba(map.get($orange, 500), 0.4),
@@ -91,7 +91,7 @@ $decision-tokens: (
     button-secondary-error-disabled-text: theme-swap-rgba(map.get($red, 800), 0.4),
     button-secondary-error-disabled-border: theme-swap-rgba(map.get($red, 800), 0.4),
     /* Tertiary buttons - General*/ button-tertiary-active-background:
-        theme-swap(map.get($gray, 200), map.get($gray, 1000)),
+        theme-swap(map.get($gray, 200), map.get($gray, 950)),
     button-tertiary-text-color: theme-swap(map.get($gray, 800), $white),
     /* Tertiary buttons - Success variant*/ button-tertiary-success-default-text:
         theme-swap(map.get($green, 800), map.get($green, 500)),
@@ -102,9 +102,9 @@ $decision-tokens: (
     button-tertiary-success-active-background: theme-swap(map.get($green, 100), map.get($green, 900)),
     /* Tertiary buttons - Warning variant*/ button-tertiary-warning-default-text:
         theme-swap(map.get($orange, 800), map.get($orange, 500)),
-    button-tertiary-warning-hover-text: theme-swap(map.get($orange, 800), map.get($orange, 1000)),
+    button-tertiary-warning-hover-text: theme-swap(map.get($orange, 800), map.get($orange, 950)),
     button-tertiary-warning-hover-background: theme-swap(map.get($orange, 100), map.get($orange, 400)),
-    button-tertiary-warning-active-text: theme-swap(map.get($orange, 900), map.get($orange, 1000)),
+    button-tertiary-warning-active-text: theme-swap(map.get($orange, 900), map.get($orange, 950)),
     button-tertiary-warning-active-background: theme-swap(map.get($orange, 100), map.get($orange, 600)),
     /* Tertiary buttons - Error variant*/ button-tertiary-error-default-text:
         theme-swap(map.get($red, 800), map.get($red, 500)),

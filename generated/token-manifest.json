@@ -10,7 +10,12 @@
                 "red",
                 "orange",
                 "green"
-            ]
+            ],
+            "scale": "50–950 (brand.pulumi.com)"
+        },
+        "semantic": {
+            "path": "tokens/core/semantic.json",
+            "tokenCount": 12
         },
         "console": {
             "path": "tokens/console/extensions.json",
@@ -117,6 +122,12 @@
                 "shade": "900",
                 "core": "#46434c",
                 "marketing": "#2b2b2c"
+            },
+            {
+                "family": "gray",
+                "shade": "950",
+                "core": "#2e2932",
+                "marketing": "#131314"
             },
             {
                 "family": "violet",

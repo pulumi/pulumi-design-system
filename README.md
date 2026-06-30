@@ -40,17 +40,22 @@ Human-editable JSON sources live under `tokens/`. SCSS and Tailwind outputs are 
 
 ```
 tokens/
-  core/primitives.json       ← Console/docs canonical palette (gray, violet, blue, …)
+  core/
+    primitives.json          ← Canonical palette (50–950, brand.pulumi.com)
+    semantic.json            ← Shared semantic tokens ({green.800}, etc.)
   console/extensions.json    ← Console-only (aqua)
   marketing/extensions.json  ← Marketing-only (salmon, fuchsia, purple, legacy gray)
   marketing/meta.json        ← Marketing Tailwind v2 typography/shape metadata
 
 generated/                   ← Output of npm run build:tokens
+  core/_semantic-tokens.scss
   console/_primitive-palettes.scss
   console/tailwind-v4/_theme.scss
   marketing/_www-colors.scss
   token-manifest.json        ← Lists shared vs product-specific tokens and conflicts
 ```
+
+See `tokens/README.md` and `tokens/DISCREPANCIES.md` for architecture and known color mismatches.
 
 **Console** (`src/global/design-tokens/_colors.scss`) imports generated primitive palettes and adds semantic tokens (brand, buttons, dark mode).
 
