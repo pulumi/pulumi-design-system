@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.5.0 — 2026-06-30
+
+### Added
+
+- `tokens/core/typography.json` — font families, PDS type ramp, Material-compatible levels
+- `tokens/core/spacing.json` — spacing scale, semantic spacing tokens, dialog widths
+- Package exports for `./tokens/core/typography.json` and `./tokens/core/spacing.json`
+
+### Removed
+
+- All SCSS under `src/` (`_typography.scss`, `_spacing.scss`, `_index.scss`)
+- `./scss` package export and `sass` peer dependency
+
+### Install
+
+```json
+"@pulumi/design-tokens": "github:pulumi/pulumi-design-system#v0.5.0"
+```
+
 ## 0.4.3 — 2026-06-30
 
 ### Changed

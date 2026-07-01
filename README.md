@@ -1,47 +1,31 @@
 # pulumi-design-system
 
-Home for Pulumi Design System tokens. This repo publishes **JSON color tokens** as the single source of truth for hex values, plus legacy SCSS for typography and spacing.
+Home for Pulumi Design System tokens. This repo publishes **JSON tokens** as the single source of truth; consumers translate to SCSS, Tailwind, CSS variables, or framework config locally.
 
 ## Package: `@pulumi/design-tokens`
 
-### Color tokens (JSON)
-
-All hex values live under `tokens/core/`. **Consumers** (console2, docs, marketing) translate these to SCSS, Tailwind, CSS variables, or property-specific semantics locally.
+### Usage
 
 ```javascript
 import primitives from "@pulumi/design-tokens/tokens/core/primitives.json";
 import semantic from "@pulumi/design-tokens/tokens/core/semantic.json";
+import typography from "@pulumi/design-tokens/tokens/core/typography.json";
+import spacing from "@pulumi/design-tokens/tokens/core/spacing.json";
 ```
 
-### Token layers
+### Token files
 
 ```
-tokens/
-  core/
-    primitives.json          ← Canonical palette (50–950, brand.pulumi.com)
-    semantic.json            ← Shared semantic tokens ({green.800}, etc.)
+tokens/core/
+  primitives.json    ← Color palettes (50–950, brand.pulumi.com)
+  semantic.json      ← Shared color semantics ({green.800}, etc.)
+  typography.json    ← Font families, type ramp, Material levels
+  spacing.json       ← Spacing scale, dialog widths
 ```
 
-See `tokens/README.md` for architecture.
+See `tokens/README.md` for architecture and reference syntax.
 
-### Semantic tokens
-
-Shared semantics in `tokens/core/semantic.json` use plain names (e.g. `success`, `brand-violet`) referencing primitives via `{family.shade}` syntax. Properties may define additional semantics in their own repos.
-
-### Non-color SCSS (legacy)
-
-Typography and spacing tokens remain as SCSS partials under `src/global/` until migrated to JSON:
-
-| Category | Source |
-|----------|--------|
-| **Typography** | `src/global/_typography.scss` |
-| **Spacing** | `src/global/_spacing.scss` |
-
-```scss
-@use "@pulumi/design-tokens/scss" as *;
-```
-
-### Updating color tokens
+### Updating tokens
 
 Edit JSON under `tokens/core/` directly. No build step in this repo.
 
@@ -50,17 +34,6 @@ Edit JSON under `tokens/core/` directly. No build step in this repo.
 - **pulumi-service** — translate JSON to console SCSS/Tailwind
 - **pulumi/docs** — translate JSON for docs/marketing
 - **pulumi/registry** — adopt shared JSON tokens
-
-## Development
-
-No build step required for color tokens.
-
-To verify non-color SCSS compiles:
-
-```bash
-echo '@use "src/global/index" as *; .x { padding: $spacing-m; }' \
-  | npx sass --stdin --load-path=src/global
-```
 
 ## License
 

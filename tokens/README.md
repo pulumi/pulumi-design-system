@@ -1,38 +1,41 @@
 # Design tokens
 
-JSON source of truth for `@pulumi/design-tokens`. Edit files here directly — this repo does not generate SCSS, Tailwind, or CSS outputs.
+JSON source of truth for `@pulumi/design-tokens`. Edit files here directly — consumers translate to SCSS, Tailwind, CSS, or framework config in their own repos.
 
 ## Architecture
 
 ```
-tokens/
-  core/
-    primitives.json    ← Single source of truth for hex values (50–950 scale, brand.pulumi.com)
-    semantic.json      ← Shared semantic tokens referencing primitives ({green.800}, etc.)
+tokens/core/
+  primitives.json    ← Color hex values (50–950 scale, brand.pulumi.com)
+  semantic.json      ← Shared color semantics referencing primitives
+  typography.json    ← Font families, sizes, weights, Material levels
+  spacing.json       ← Spacing scale and semantic spacing tokens
 ```
 
-**All hex codes live in this repo.** Properties (console2, docs, marketing) consume these JSON files and translate to SCSS, Tailwind, CSS variables, or property-specific semantics in their own codebases.
-
-### Scale nomenclature
+### Color scale
 
 Palettes use **50, 100, 200, …, 900, 950** per [brand.pulumi.com/identity/color](https://brand.pulumi.com/identity/color). Lower values are lighter; 950 is the darkest step.
 
-### Layers
-
-| Layer | Purpose |
-|-------|---------|
-| **Core primitives** | Canonical palette shared across all properties |
-| **Core semantic** | Cross-property aliases (`success` → `{green.800}`, `brand-violet` → `{violet.700}`) |
-| **Property semantics** | Defined at consumption time in each property's repo |
-
 ### Reference syntax
 
-Semantic tokens reference primitives using `{family.shade}` or `{utility.name}`:
+Semantic tokens reference other tokens using `{group.name}`:
 
 ```json
-{
-  "success": "{green.800}",
-  "text-body": "{gray.950}"
-}
+// semantic.json
+{ "success": "{green.800}", "text-body": "{gray.950}" }
+
+// spacing.json
+{ "card-margin-bottom": "{scale.3x}" }
 ```
 
+Color semantics use `{family.shade}` (e.g. `{violet.700}`). Utility colors use `{utility.name}` (e.g. `{utility.service-black}`).
+
+### Layers
+
+| Layer | File | Purpose |
+|-------|------|---------|
+| **Primitives** | `primitives.json` | Canonical color hex values |
+| **Color semantic** | `semantic.json` | Cross-property color aliases |
+| **Typography** | `typography.json` | Font families, type ramp, Material-compatible levels |
+| **Spacing** | `spacing.json` | Spacing scale, dialog widths, semantic spacing |
+| **Property semantics** | — | Defined at consumption time in each property's repo |
