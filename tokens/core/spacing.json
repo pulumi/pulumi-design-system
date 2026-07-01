@@ -1,0 +1,23 @@
+{
+    "$description": "Shared spacing scale and semantic spacing tokens. Reference syntax: {scale.name}.",
+    "$product": "core",
+    "scale": {
+        "xs": "2px",
+        "s": "4px",
+        "m": "8px",
+        "l": "12px",
+        "xl": "16px",
+        "2x": "24px",
+        "3x": "32px",
+        "4x": "48px"
+    },
+    "semantic": {
+        "card-margin-bottom": "{scale.3x}",
+        "hud-row-gap": "{scale.m}"
+    },
+    "dialogWidth": {
+        "small": "632px",
+        "medium": "752px",
+        "large": "872px"
+    }
+}
