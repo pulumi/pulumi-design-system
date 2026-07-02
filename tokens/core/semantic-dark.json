@@ -1,0 +1,10 @@
+{
+    "$description": "Dark-mode semantic color overrides. Tokens not listed here use the same references as semantic.json, resolved against primitives-dark.json.",
+    "$product": "core",
+    "tokens": {
+        "brand-yellow": "#ffd05d",
+        "foreground": "#ffffff",
+        "foreground-muted": "{gray.700}",
+        "background": "{utility.service-black}"
+    }
+}

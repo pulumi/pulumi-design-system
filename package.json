@@ -1,13 +1,20 @@
 {
   "name": "@pulumi/design-tokens",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Pulumi Design System tokens — JSON source of truth for color, typography, and spacing",
   "license": "Apache-2.0",
-  "files": ["tokens/"],
+  "files": ["tokens/", "AGENTS.md"],
   "exports": {
+    "./tokens/core/tokens.json": "./tokens/core/tokens.json",
     "./tokens/core/primitives.json": "./tokens/core/primitives.json",
+    "./tokens/core/primitives-dark.json": "./tokens/core/primitives-dark.json",
     "./tokens/core/semantic.json": "./tokens/core/semantic.json",
+    "./tokens/core/semantic-dark.json": "./tokens/core/semantic-dark.json",
+    "./tokens/core/palette-semantics.json": "./tokens/core/palette-semantics.json",
     "./tokens/core/typography.json": "./tokens/core/typography.json",
     "./tokens/core/spacing.json": "./tokens/core/spacing.json"
+  },
+  "scripts": {
+    "sync-tokens": "node scripts/sync-tokens.mjs"
   }
 }
