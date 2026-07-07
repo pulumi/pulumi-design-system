@@ -1,0 +1,54 @@
+{
+    "$description": "Per-palette semantic roles per brand.pulumi.com/identity/color. Resolve against primitives.json (light) or primitives-dark.json (dark) — same shade references, inverted hex in dark mode.",
+    "$product": "core",
+    "palettes": {
+        "violet": {
+            "primary": "{violet.700}",
+            "accent": "{violet.500}",
+            "muted": "{violet.200}",
+            "background": "{violet.50}"
+        },
+        "gray": {
+            "primary": "{gray.700}",
+            "accent": "{gray.500}",
+            "muted": "{gray.200}",
+            "background": "{gray.50}"
+        },
+        "green": {
+            "primary": "{green.700}",
+            "accent": "{green.500}",
+            "muted": "{green.200}",
+            "background": "{green.50}"
+        },
+        "aqua": {
+            "primary": "{aqua.700}",
+            "accent": "{aqua.500}",
+            "muted": "{aqua.200}",
+            "background": "{aqua.50}"
+        },
+        "blue": {
+            "primary": "{blue.700}",
+            "accent": "{blue.500}",
+            "muted": "{blue.200}",
+            "background": "{blue.50}"
+        },
+        "red": {
+            "primary": "{red.700}",
+            "accent": "{red.500}",
+            "muted": "{red.200}",
+            "background": "{red.50}"
+        },
+        "orange": {
+            "primary": "{orange.700}",
+            "accent": "{orange.500}",
+            "muted": "{orange.200}",
+            "background": "{orange.50}"
+        },
+        "yellow": {
+            "primary": "{yellow.700}",
+            "accent": "{yellow.500}",
+            "muted": "{yellow.200}",
+            "background": "{yellow.50}"
+        }
+    }
+}

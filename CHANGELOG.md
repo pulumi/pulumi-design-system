@@ -1,5 +1,25 @@
 # Changelog
 
+## 0.6.0 — 2026-07-02
+
+### Added
+
+- `tokens/core/primitives-dark.json` — dark-mode color palettes (inverted 50–950 scale, aligned with pulumi-service / brand.pulumi.com)
+- `tokens/core/palette-semantics.json` — per-palette primary (700), accent (500), muted (200), background (50) roles
+- `tokens/core/tokens.json` — bundled export of all core token files
+- `scripts/sync-tokens.mjs` — regenerates `primitives-dark.json` and `tokens.json` after source edits
+- `AGENTS.md` — token index and editing guide for agents and contributors
+
+### Changed
+
+- `semantic.json` — added `brand-yellow`, `foreground`, `foreground-muted`, and `background` tokens
+
+### Install
+
+```json
+"@pulumi/design-tokens": "github:pulumi/pulumi-design-system#v0.6.0"
+```
+
 ## 0.5.0 — 2026-06-30
 
 ### Added
