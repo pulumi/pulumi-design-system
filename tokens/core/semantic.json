@@ -1,5 +1,5 @@
 {
-    "$description": "Shared semantic color tokens referencing core primitives. Properties define additional semantics in their own repos. Reference syntax: {family.shade} or {utility.name}. In dark mode, resolve the same references against primitives-dark.json unless overridden in semantic-dark.json.",
+    "$description": "Shared semantic color tokens referencing core primitives. Properties define additional semantics in their own repos. Reference syntax: {family.shade} or {utility.name}. In dark mode, resolve the same references against primitives-dark.json.",
     "$product": "core",
     "tokens": {
         "brand-violet": "{violet.700}",

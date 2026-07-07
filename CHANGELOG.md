@@ -6,7 +6,6 @@
 
 - `tokens/core/primitives-dark.json` — dark-mode color palettes (inverted 50–950 scale, aligned with pulumi-service / brand.pulumi.com)
 - `tokens/core/palette-semantics.json` — per-palette primary (700), accent (500), muted (200), background (50) roles
-- `tokens/core/semantic-dark.json` — dark-mode semantic overrides (`brand-yellow`, `foreground`, `background`)
 - `tokens/core/tokens.json` — bundled export of all core token files
 - `scripts/sync-tokens.mjs` — regenerates `primitives-dark.json` and `tokens.json` after source edits
 - `AGENTS.md` — token index and editing guide for agents and contributors

@@ -11,7 +11,6 @@ tokens/core/
   primitives.json         ← Light-mode color hex values (50–950, brand.pulumi.com)
   primitives-dark.json    ← Dark-mode palettes (generated — inverted scale positions)
   semantic.json           ← Shared color semantics referencing primitives
-  semantic-dark.json      ← Dark-mode semantic overrides
   palette-semantics.json  ← Per-palette primary / accent / muted / background
   typography.json         ← Font families, sizes, weights, Material levels
   spacing.json            ← Spacing scale and semantic spacing tokens
@@ -72,7 +71,6 @@ This updates `primitives-dark.json` and `tokens.json`. Do not edit those files b
 | **Primitives (light)** | `primitives.json` | Canonical color hex values |
 | **Primitives (dark)** | `primitives-dark.json` | Inverted palettes for dark mode |
 | **Color semantic** | `semantic.json` | Cross-property color aliases |
-| **Color semantic (dark)** | `semantic-dark.json` | Dark-mode overrides |
 | **Palette semantics** | `palette-semantics.json` | primary / accent / muted / background per palette |
 | **Typography** | `typography.json` | Font families, type ramp, Material-compatible levels |
 | **Spacing** | `spacing.json` | Spacing scale, dialog widths, semantic spacing |

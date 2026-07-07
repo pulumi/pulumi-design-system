@@ -33,7 +33,6 @@ tokens/core/
   primitives.json        ← Light-mode color palettes (50–950)
   primitives-dark.json   ← Dark-mode palettes (inverted scale)
   semantic.json          ← Shared color semantics
-  semantic-dark.json     ← Dark-mode semantic overrides
   palette-semantics.json ← primary / accent / muted / background per palette
   typography.json        ← Font families, type ramp, Material levels
   spacing.json           ← Spacing scale, dialog widths

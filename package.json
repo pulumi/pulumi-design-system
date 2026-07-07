@@ -9,7 +9,6 @@
     "./tokens/core/primitives.json": "./tokens/core/primitives.json",
     "./tokens/core/primitives-dark.json": "./tokens/core/primitives-dark.json",
     "./tokens/core/semantic.json": "./tokens/core/semantic.json",
-    "./tokens/core/semantic-dark.json": "./tokens/core/semantic-dark.json",
     "./tokens/core/palette-semantics.json": "./tokens/core/palette-semantics.json",
     "./tokens/core/typography.json": "./tokens/core/typography.json",
     "./tokens/core/spacing.json": "./tokens/core/spacing.json"

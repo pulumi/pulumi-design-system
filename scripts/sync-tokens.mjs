@@ -62,7 +62,6 @@ const bundle = generateBundle({
     primitivesDark,
     semantic: readJson("semantic.json"),
     paletteSemantics: readJson("palette-semantics.json"),
-    semanticDark: readJson("semantic-dark.json"),
     typography: readJson("typography.json"),
     spacing: readJson("spacing.json"),
 });
