@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.6.1 — 2026-07-09
+
+### Changed
+
+- `semantic.json` — `foreground` now references `{gray.950}` (was `{utility.service-black}`) so body text resolves to gray-950 `#2e2932` in light mode and gray-50 `#fafafa` in dark mode; service-black is the dark page background, not a text color
+- `semantic.json` — normalized `brand-*` tokens to palette references: `brand-orange` → `{orange.500}` (was `{orange.600}`), `brand-yellow` → `{yellow.500}` (was raw hex `#fed05d`), `brand-blue` → `{blue.700}` (was `{blue.800}`); `brand-violet` remains `{violet.700}`
+
+### Install
+
+```json
+"@pulumi/design-tokens": "github:pulumi/pulumi-design-system#v0.6.1"
+```
+
 ## 0.6.0 — 2026-07-02
 
 ### Added

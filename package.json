@@ -1,6 +1,6 @@
 {
   "name": "@pulumi/design-tokens",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "Pulumi Design System tokens — JSON source of truth for color, typography, and spacing",
   "license": "Apache-2.0",
   "files": ["tokens/", "AGENTS.md"],
